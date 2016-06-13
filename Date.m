@@ -135,6 +135,80 @@ classdef Date
         function r = minus(date1, date2)
             r = date2jdn(date1) - date2jdn(date2) + 1;
         end
+        % lt: Overwriting the less-than "<" operator. Returns true if date1
+        % is less than date 2
+        function r = lt(date1, date2)
+            r = NaN;
+            if (date1.year < date2.year)
+                r = 1;
+                return;
+            elseif (date1.year > date2.year)
+                r = 0;
+                return;
+            else
+                if (date1.month < date2.month)
+                    r = 1;
+                    return;
+                elseif (date1.month > date2.month)
+                    r = 0;
+                    return;
+                else
+                    if (date1.day < date2.day)
+                        r = 1;
+                        return;
+                    elseif (date1.day > date2.day)
+                        r = 0;
+                        return;
+                    else
+                        r = 0;
+                        return;
+                    end
+                end
+            end
+        end
+        % le: Overwriting the less-than-or-equal-to "<=" operator. Returns 
+        % true if date1 is less than or equal to date 2
+        function r = le(date1, date2)
+            r = NaN;
+            if (date1 ~= date2)
+                if (date1 < date2)
+                    r = 1;
+                else
+                    r = 0;
+                end
+            else % equal
+                r = 1;
+            end
+        end
+        % gt: Overwriting the greater-than ">" operator. Returns true if 
+        % date1 is greater than date 2
+        function r = gt(date1, date2)
+            r = NaN;
+            if (date1 ~= date2)
+                if (date1 < date2)
+                    r = 0;
+                else
+                    r = 1;
+                end
+            else
+                r = 0;
+            end
+        end
+        % ge: Overwriting the greater-than-or-equal-to ">=" operator. 
+        % Returns true if date1 is greater than or equal to date 2
+        function r = ge(date1, date2)
+            r = NaN;
+            if (date1 ~= date2)
+                if (date1 < date2)
+                    r = 0;
+                else
+                    r = 1;
+                end
+            else
+                r = 1;
+            end
+        end
+        %
         % last_of_month: Returns a 1 if the object's day is the last of the
         % month. Returns a zero otherwise. 
         function r = last_of_month(obj)
