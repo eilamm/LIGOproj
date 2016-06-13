@@ -19,7 +19,7 @@ END_FREQ = input('Enter upper bound frequency (Hz): ');
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([1, 12, 2015]);
+START_DATE = Date([2, 12, 2015]);
 END_DATE = Date([31, 1, 2016]);
 
 disp(['Start date: ', START_DATE.date2str()]);
