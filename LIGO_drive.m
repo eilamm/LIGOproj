@@ -29,12 +29,12 @@ disp(['End date: ', END_DATE.date2str()]);
 % lower bound, upper bound, offset, harmonic, ID
 c1 = Comb([0, 4000, 0, 16, 1]);
 c2 = Comb([150, 4000, 48, 16, 2]);
-c3 = Comb([0, 4000, 0, 1, 3]);
-c4 = Comb([0, 4000, 0.25, 1, 4]);
-c5 = Comb([0, 4000, 0.50, 1, 5]);
-c6 = Comb([0, 4000, 0.75, 1, 6]);
-
-combs = [c1; c2; c3; c4; c5; c6];
+% c3 = Comb([0, 4000, 0, 1, 3]);
+% c4 = Comb([0, 4000, 0.25, 1, 4]);
+% c5 = Comb([0, 4000, 0.50, 1, 5]);
+% c6 = Comb([0, 4000, 0.75, 1, 6]);
+c7 = Comb([0, 150, 0, 16, 7]);
+combs = [c1; c2; c7];
 
 for x = 1:1:size(combs)
     combs(x).init_date = START_DATE;
