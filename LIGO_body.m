@@ -60,7 +60,7 @@ function c = LIGO_body(c)
                         % matrix. Take the value from the second column, which is
                         % the normal power.
         %                 data(bins(start, 2), :)
-                        value = data(bins(start, 2), 2);
+                        value = data(c(j).bins(start, 2), 2);
                         total = total + value;
                         square = square + value^2;
                         start = start + 1;
