@@ -40,7 +40,7 @@ function c = LIGO_body(c)
         y = date.year;
         % Enter middle loop. Goes through frequency range per day.
         for freq = fileA:100:fileZ
-            [data, file_exists] = read_data_new(d, m, y, freq);
+            [data, file_exists, path] = read_data_new(d, m, y, freq);
             if (file_exists == 1)
                 
                 
