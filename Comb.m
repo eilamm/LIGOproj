@@ -17,6 +17,7 @@ classdef Comb
         num_days = 0;
         day_avgs;
         day_errors;
+        bins;
     end
     
     methods
@@ -102,9 +103,10 @@ classdef Comb
             end
         end
         % init: Calls verify. Preallocates memory for the day averages and
-        % error arrays.
+        % error arrays. Calculates the bins to be looked at.
         function obj = init(obj)
             obj.verify();
+            obj.bins = init_bins(obj);
             obj.num_days = obj.end_date - obj.init_date;
             obj.day_avgs = zeros(obj.num_days, 1);
             obj.day_errors = zeros(obj.num_days, 1);
