@@ -83,7 +83,6 @@ for i = 1:1:size(combs)
     num_days = combs(i).num_days;
     day_averages = combs(i).day_avgs;
     day_errors = combs(i).day_errors;
-    day_sft_errs = combs(i).day_sft_errs;
     START_DATE = combs(i).init_date;
     END_DATE = combs(i).end_date;
     HARMONIC = combs(i).harm;
@@ -96,8 +95,7 @@ for i = 1:1:size(combs)
     green_line = @(t) 1;
     hold on;
     fplot(green_line, [1 num_days], 'Color', 'g');
-    hold on;
-    errorbar(1:1:num_days, day_averages, day_sft_errs, 'ro');
+
 
 
     %Technically it's off by one, since day 1 is the start_date. Requires
@@ -123,6 +121,8 @@ for i = 1:1:size(combs)
         disp([temp.date2str(), ': ', num2str(day_averages(j))]);
         temp = temp.next_day();
     end
+    if (comb(i).ID == 7)
+        
 end
 disp(['Ending time is ', datestr(now)]);
 disp('DONE');

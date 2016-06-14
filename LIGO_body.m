@@ -91,6 +91,7 @@ function c = LIGO_body(c)
             c(k).day_errors(i) = ...
                 calc_errbars(stddev(avg_of_square, avg), c(k).num_freq);
 
+            c(k).day_sft_errs(i) = SFTErr(path, c(k).num_freq);
             c(k).total = 0;
             c(k).square = 0;
             c(k).start = 1;

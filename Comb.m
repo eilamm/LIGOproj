@@ -17,6 +17,7 @@ classdef Comb
         num_days = 0;
         day_avgs;
         day_errors;
+        day_sft_errs;
         bins;
         num_freq;
         start = 1;
@@ -115,6 +116,7 @@ classdef Comb
             obj.num_days = obj.end_date - obj.init_date;
             obj.day_avgs = zeros(obj.num_days, 1);
             obj.day_errors = zeros(obj.num_days, 1);
+            obj.day_sft_errs = zeros(obj.num_days, 1);
         end
         % analyze: uses the bins property to index into data and analyzes
         % it as is proper (AKA adding to the total and square properties)

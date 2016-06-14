@@ -9,5 +9,8 @@ function e = SFTErr(path, teeth)
     listOfSFTs = dir(path);
     numSFTs = numel(listOfSFTs);
     
-    e = 1/sqrt(numSFTs*teeth);    
+    e = 1/sqrt(numSFTs*teeth);
+    if (e == 0)
+        e = NaN;
+    end
 end
