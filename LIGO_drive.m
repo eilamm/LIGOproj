@@ -19,29 +19,40 @@ close all;
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([1, 1, 2016]);
-END_DATE = Date([31, 1, 2016]);
+START_DATE = Date([1, 9, 2015]);
+END_DATE = Date([21, 1, 2016]);
 
 disp(['Start date: ', START_DATE.date2str()]);
 disp(['End date: ', END_DATE.date2str()]);
 
 % Until the constructor is made better.
 % lower bound, upper bound, offset, harmonic, ID
-c1 = Comb([0, 4000, 32, 16, 1]);
+c1 = Comb([0, 4000, 0, 16, 1]);
 c2 = Comb([150, 4000, 48, 16, 2]);
-c3 = Comb([1000, 4000, 0.76, 20, 3]);
+c3 = Comb([0, 4000, 0, 1, 3]);
+c4 = Comb([0, 4000, 0.25, 1, 4]);
+c5 = Comb([0, 4000, 0.50, 1, 5]);
+c6 = Comb([0, 4000, 0.75, 1, 6]);
 
-c1.init_date = START_DATE;
-c1.end_date = END_DATE;
-c2.init_date = START_DATE;
-c2.end_date = END_DATE;
-c3.init_date = START_DATE;
-c3.end_date = END_DATE;
+combs = [c1; c2; c3; c4; c5; c6];
 
-c1 = c1.init();
-c2 = c2.init();
-c3 = c3.init();
-combs = [c1; c2; c3];
+for x = 1:1:size(combs)
+    combs(x).init_date = START_DATE;
+    combs(x).end_date = END_DATE;
+    combs(x) = combs(x).init();
+end
+
+% c1.init_date = START_DATE;
+% c1.end_date = END_DATE;
+% c2.init_date = START_DATE;
+% c2.end_date = END_DATE;
+% c3.init_date = START_DATE;
+% c3.end_date = END_DATE;
+% 
+% c1 = c1.init();
+% c2 = c2.init();
+% c3 = c3.init();
+% combs = [c1; c2; c3];
 % These HAVE to be multiples of 100. END_FREQ MUST be >= START_FREQ, and
 % both must be <= 4000. They determine which frequency range is looked
 % at, and thus which files are opened.
