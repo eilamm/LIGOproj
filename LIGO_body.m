@@ -7,8 +7,8 @@
 % Argument c is the combs array
 function c = LIGO_body(c)
     % Calculate all the bins to be looked at
-    bins = calc_bins(HARMONIC, offset, START_FREQ, END_FREQ);
-    num_freq = length(bins);
+%     bins = calc_bins(HARMONIC, offset, START_FREQ, END_FREQ);
+%     num_freq = length(bins);
     % start is a counter used to know which value of bins we are on.
     % Increases with each iteration of the inner loop. Important to reset
     % to 1 after a day is complete (each iteration of the outer loop)
