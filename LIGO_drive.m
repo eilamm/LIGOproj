@@ -26,17 +26,22 @@ disp(['Start date: ', START_DATE.date2str()]);
 disp(['End date: ', END_DATE.date2str()]);
 
 % Until the constructor is made better.
-c1 = Comb([0, 4000, 0, 16, 1]);
-c2 = Comb([150, 4000, 0, 16, 2]);
+% lower bound, upper bound, offset, harmonic, ID
+c1 = Comb([0, 4000, 32, 16, 1]);
+c2 = Comb([150, 4000, 48, 16, 2]);
+c3 = Comb([1000, 4000, 0.76, 20, 3]);
+
 c1.init_date = START_DATE;
 c1.end_date = END_DATE;
 c2.init_date = START_DATE;
 c2.end_date = END_DATE;
+c3.init_date = START_DATE;
+c3.end_date = END_DATE;
 
 c1 = c1.init();
 c2 = c2.init();
-
-combs = [c1; c2];
+c3 = c3.init();
+combs = [c1; c2; c3];
 % These HAVE to be multiples of 100. END_FREQ MUST be >= START_FREQ, and
 % both must be <= 4000. They determine which frequency range is looked
 % at, and thus which files are opened.
@@ -74,6 +79,7 @@ for i = 1:1:size(combs)
     START_FREQ = combs(i).low_b;
     END_FREQ = combs(i).up_b;
     
+    figure;
     errorbar(1:1:num_days, day_averages, day_errors, 'o');
     green_line = @(t) 1;
     hold on;
