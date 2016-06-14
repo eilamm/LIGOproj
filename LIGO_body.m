@@ -87,7 +87,7 @@ function c = LIGO_body(c)
             end
             c(k).day_avgs(i) = avg;
 
-            avg_of_square = square/num_freq;
+            avg_of_square = c(k).square/c(k).num_freq;
             c(k).day_errors(i) = ...
                 calc_errbars(stddev(avg_of_square, avg), c(k).num_freq);
 
