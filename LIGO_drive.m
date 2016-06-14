@@ -103,7 +103,8 @@ for i = 1:1:size(combs)
         '.png']);
 
     temp = START_DATE;
-
+    
+    disp('');
     for j = 1:1:num_days
         disp([temp.date2str(), ': ', num2str(day_averages(j))]);
         temp = temp.next_day();
