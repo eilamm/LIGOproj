@@ -33,8 +33,8 @@ c1.end_date = END_DATE;
 c2.init_date = START_DATE;
 c2.end_date = END_DATE;
 
-c1.init();
-c2.init();
+c1 = c1.init();
+c2 = c2.init();
 
 combs = [c1; c2];
 % These HAVE to be multiples of 100. END_FREQ MUST be >= START_FREQ, and
