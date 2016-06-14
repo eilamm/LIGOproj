@@ -11,10 +11,10 @@ clear variables;
 close all;
 
 % SET THESE VALUES
-offset = input('Enter offset from 0 (Hz): ');
-HARMONIC = input('Enter harmonic (Hz): ');
-START_FREQ = input('Enter lower bound frequency (Hz): ');
-END_FREQ = input('Enter upper bound frequency (Hz): ');
+% offset = input('Enter offset from 0 (Hz): ');
+% HARMONIC = input('Enter harmonic (Hz): ');
+% START_FREQ = input('Enter lower bound frequency (Hz): ');
+% END_FREQ = input('Enter upper bound frequency (Hz): ');
 
 
 % SET START and END DATES for evaluation
@@ -25,6 +25,13 @@ END_DATE = Date([31, 1, 2016]);
 disp(['Start date: ', START_DATE.date2str()]);
 disp(['End date: ', END_DATE.date2str()]);
 
+% Until the constructor is made better.
+c1 = Comb([0, 4000, 0, 16, 1]);
+c2 = Comb([150, 4000, 0, 16, 2]);
+c1.init_date = START_DATE;
+c1.end_date = END_DATE;
+c2.init_date = START_DATE;
+c2.end_date = END_DATE;
 
 % These HAVE to be multiples of 100. END_FREQ MUST be >= START_FREQ, and
 % both must be <= 4000. They determine which frequency range is looked

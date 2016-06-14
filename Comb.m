@@ -7,20 +7,23 @@
 
 classdef Comb
     properties
-        init_date   % Initial date to be investigated in range
-        end_date    % Last date to be investigated in range
-        low_b       % Frequencies below this lower bound are ignored
-        up_b        % Frequencies above this upper bound are ignored
-        offset      % Freq harmonics will be offset from 0 by this value
-        harm        % Value of the frequency harmonics for this comb
-        ID          % Used to uniquely identify each comb
+        init_date@Date = Date();   % Initial date to be investigated in range
+        end_date@Date = Date();    % Last date to be investigated in range
+        low_b = 0;       % Frequencies below this lower bound are ignored
+        up_b = 4000;     % Frequencies above this upper bound are ignored
+        offset = 0;      % Freq harmonics will be offset from 0 by this value
+        harm = 16;       % Value of the frequency harmonics for this comb
+        ID = 1;          % Used to uniquely identify each comb
+        num_days = 0;
+        day_avgs;
+        day_errors;
     end
     
     methods
         % constructor
         function obj = Comb(c)
             if (nargin > 0)
-                if isa(c, Comb)
+                if isa(c, 'Comb')
                     obj.init_date = c.init_date;
                     obj.end_date = c.end_date;
                     obj.low_b = c.low_b;
@@ -29,33 +32,30 @@ classdef Comb
                     obj.harm = c.harm;
                     obj.ID = c.ID;
                 else
-                    obj.init_date = c(1);
-                    obj.end_date = c(2);
-                    obj.low_b = c(3);
-                    obj.up_b = c(4);
-                    obj.offset = c(5);
-                    obj.harm = c(6);
+                    obj.low_b = c(1);
+                    obj.up_b = c(2);
+                    obj.offset = c(3);
+                    obj.harm = c(4);
+                    obj.ID = c(5);
                 end
             else
-                Disp(['Object properties not initialized']);
+                disp('Object properties initialized to default values');
             end
         end
         % verify: verifies that the properties of the object make sense;
         % that the init_date is the same or before the end_date, that the
         % lower bound is less than the upper_bound.
-        function r = verify(obj)
-            r = 1;
+        function verify(obj)            
             if (obj.end_date < obj.init_date)
-                disp(['Verification of Comb ', obj.ID, ' failed. The ' ...
-                    'end date, ', obj.end_date.date2str(), ' is ' ...
-                    'earlier than the initial date, ', ...
+                error(['Verification of Comb ', num2str(obj.ID), ...
+                    ' failed. The end date, ', obj.end_date.date2str(), ...
+                    ' is earlier than the initial date, ', ...
                     obj.init_date.date2str()]);
-                r = 0;
             elseif (obj.up_b <= obj.low_b)
-                disp(['Verification of Comb ', obj.ID, ' failed. The ' ...
-                    'lower bound, ', num2str(obj.low_b), ' is ' ...
-                    'not less than the upper bound, ', num2str(obj.up_b)]);
-                r = 0;
+                error(['Verification of Comb ', num2str(obj.ID), ...
+                    ' failed. The lower bound, ', num2str(obj.low_b), ...
+                    ' is not less than the upper bound, ', ...
+                    num2str(obj.up_b)]);
             end
             disp(['Comb ', num2str(obj.ID), ' is good.']);
         end
@@ -100,6 +100,14 @@ classdef Comb
             else
                 r = 1;
             end
+        end
+        % init: Calls verify. Preallocates memory for the day averages and
+        % error arrays.
+        function obj = init(obj)
+            obj.verify();
+            obj.num_days = obj.end_date - obj.init_date;
+            obj.day_avgs = zeros(obj.num_days, 1);
+            obj.day_errors = zeros(obj.num_days, 1);
         end
     end
 end
