@@ -118,6 +118,36 @@ classdef Comb
             obj.day_errors = zeros(obj.num_days, 1);
             obj.day_sft_errs = zeros(obj.num_days, 1);
         end
+        % plot_title: returns a string that should be used as the title of
+        % the plot of the object's data
+        function str = plot_title(o)
+            str = ['Average normalized power for ', num2str(o.harm), ...
+                    ' Hz Harmonics with offset ', num2str(o.offset), ...
+                    ' Hz in range ', num2str(o.low_b), '-', ...
+                    num2str(o.up_b), ' Hz between ',  ...
+                    o.init_date.date2str(), ' and ',  ...
+                    o.init_date.date2str()];
+        end
+        % plot_xlabel: returns a string that should be used for the 
+        % xlabel of the plot of the object's data
+        function str = plot_xlabel(o)
+            str = ['Days since ', o.init_date.date2str()];
+        end
+        % plot_xlabel: returns a string that should be used for the 
+        % ylabel of the plot of the object's data
+        function str = plot_ylabel(o)
+            str = 'Average normalized power';
+        end
+        % plot_filename: returns a string that should be used as the file
+        % name for the plot
+        function str = plot_filename(o)
+            str = ['/home/eilam.morag/public_html/Avg_norm_pwr_for_',  ...
+                    'harmonic_', num2str(o.harm), 'Hz_offset_',  ...
+                    num2str(o.offset), 'Hz_range_', num2str(o.low_b), ...
+                    '_to_', num2str(o.up_b), 'Hz_dates_', ...
+                    o.init_date.date2str_nospace(), '_to_', ...
+                    o.end_date.date2str_nospace(), '.png'];
+        end
         % analyze: uses the bins property to index into data and analyzes
         % it as is proper (AKA adding to the total and square properties)
 %         function [total, square, start] = analyze(obj, data)
