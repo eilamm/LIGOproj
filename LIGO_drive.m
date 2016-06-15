@@ -66,7 +66,7 @@ for i = 1:1:size(combs)
     fplot(green_line, [1 num_days], 'Color', 'g');
     hold on;
     errorbar(1:1:num_days, day_averages, day_sft_errs, 'ro');
-
+    combs(i).plot_vlines();
 
     %Technically it's off by one, since day 1 is the start_date. Requires
     %slight tweaking.
