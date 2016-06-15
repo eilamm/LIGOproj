@@ -36,6 +36,7 @@ classdef Date
                 date.year = obj.year;
             end
         end
+        % Returns a string version of the date (e.g. Jan 12, 2016)
         function date = date2str(obj)
             switch obj.month
                 case 1
@@ -67,6 +68,41 @@ classdef Date
                         num2str(obj.month)];
             end
             date = [m, ' ', num2str(obj.day), ', ', num2str(obj.year)];
+        end
+        % date2str_nospace: Does the same thing as date2str, but the
+        % returned string replaces spaces with dashes. Good for file
+        % names.
+        function date = date2str_nospace(obj)
+            switch obj.month
+                case 1
+                    m = 'Jan';
+                case 2
+                    m = 'Feb';  
+                case 3
+                    m = 'Mar';
+                case 4
+                    m = 'Apr';
+                case 5
+                    m = 'May';
+                case 6
+                    m = 'Jun';
+                case 7
+                    m = 'Jul';
+                case 8
+                    m = 'Aug';
+                case 9
+                    m = 'Sep';
+                case 10
+                    m = 'Oct';
+                case 11
+                    m = 'Nov';
+                case 12
+                    m = 'Dec';
+                otherwise
+                    m = ['ERROR WITH MONTH: NOT IN RANGE 1-12; value is ', ...
+                        num2str(obj.month)];
+            end
+            date = [m, '-', num2str(obj.day), '-', num2str(obj.year)];
         end
         function print(obj)
             disp(date2str(obj));
