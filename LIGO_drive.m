@@ -12,7 +12,7 @@ close all;
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([1, 1, 2016]);
+START_DATE = Date([1, 11, 2015]);
 END_DATE = Date([21, 1, 2016]);
 
 disp(['Start date: ', START_DATE.date2str()]);
