@@ -155,7 +155,8 @@ classdef Comb
             temp = o.init_date;
             for i = 1:1:o.num_days
                 if (temp.last_of_month() == 1)
-                    line([i i], ylim, 'LineStyle', '--', 'Color', 'm');
+                    line([i i], ylim, 'LineStyle', '--', 'Color', 'm', ...
+                         'LineWidth', 0.85);
                 end
                 temp = temp.next_day();
             end
