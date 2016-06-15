@@ -148,6 +148,18 @@ classdef Comb
                     o.init_date.date2str_nospace(), '_to_', ...
                     o.end_date.date2str_nospace(), '.png'];
         end
+        % plot_vlines: plots dashed magenta vertical lines at the end of
+        % every month in-between the init_date and end_date of the comb
+        function plot_vlines(o)
+            hold on;
+            temp = o.init_date;
+            for i = 1:1:o.num_days
+                if (temp.last_of_month() == 1)
+                    line([i i], ylim, 'LineStyle', '--', 'Color', 'm');
+                end
+                temp = temp.next_day();
+            end
+        end
         % analyze: uses the bins property to index into data and analyzes
         % it as is proper (AKA adding to the total and square properties)
 %         function [total, square, start] = analyze(obj, data)
