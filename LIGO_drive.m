@@ -12,7 +12,7 @@ close all;
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([1, 11, 2015]);
+START_DATE = Date([1, 1, 2016]);
 END_DATE = Date([21, 1, 2016]);
 
 disp(['Start date: ', START_DATE.date2str()]);
@@ -73,7 +73,7 @@ for i = 1:1:size(combs)
     xlabel(combs(i).plot_xlabel());
     ylabel(combs(i).plot_ylabel());
     title(combs(i).plot_title());
-    saveas(gcf, combs(i).plot_filename());
+    combs(i).saveall();
     
     temp = START_DATE;
     

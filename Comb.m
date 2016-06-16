@@ -141,12 +141,12 @@ classdef Comb
         % plot_filename: returns a string that should be used as the file
         % name for the plot
         function str = plot_filename(o)
-            str = ['/home/eilam.morag/public_html/Avg_norm_pwr_for_',  ...
-                    'harmonic_', num2str(o.harm), 'Hz_offset_',  ...
-                    num2str(o.offset), 'Hz_range_', num2str(o.low_b), ...
-                    '_to_', num2str(o.up_b), 'Hz_dates_', ...
-                    o.init_date.date2str_nospace(), '_to_', ...
-                    o.end_date.date2str_nospace(), '.png'];
+            str = ['/home/eilam.morag/public_html/', o.combStrFile(), ...
+                    '/Avg_norm_pwr_for_', 'harmonic_', num2str(o.harm), ...
+                    'Hz_offset_', num2str(o.offset), 'Hz_range_', ...
+                    num2str(o.low_b), '_to_', num2str(o.up_b), ...
+                    'Hz_dates_', o.init_date.date2str_nospace(), ...
+                    '_to_', o.end_date.date2str_nospace(), '.png'];
         end
         % plot_vlines: plots dashed magenta vertical lines at the end of
         % every month in-between the init_date and end_date of the comb
@@ -160,6 +160,24 @@ classdef Comb
                 end
                 temp = temp.next_day();
             end
+        end
+        % saveall: checks for the existence of a directory for the specific
+        % comb. If none exists, creates one. Then saves the plot to the
+        % folder and creates an HTML script to write a webpage displaying
+        % the plot.
+        function saveall(o)
+            if (exist(o.combStrFile(), 'dir') == 0)
+                mkdir(o.combStrFile());
+            end
+            saveas(gcf, o.plot_filename());
+                
+        end
+        % printCombFile: returns as a string the important comb properties in a filename
+        % safe way (with underscores)
+        function str = combStrFile(o)
+            str = ['Harmonic', num2str(o.harm), 'Hz_offset', ...
+                    num2str(o.offset), 'Hz_range', num2str(o.low_b), ...
+                    '_to_', num2str(o.up_b)];
         end
         % analyze: uses the bins property to index into data and analyzes
         % it as is proper (AKA adding to the total and square properties)
