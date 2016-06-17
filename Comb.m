@@ -141,8 +141,7 @@ classdef Comb
         % plot_filename: returns a string that should be used as the file
         % name for the plot
         function str = plot_filename(o)
-            str = ['/home/eilam.morag/public_html/', o.combStrFile(), ...
-                    '/Avg_norm_pwr_for_', 'harmonic_', num2str(o.harm), ...
+            str = ['Avg_norm_pwr_for_', 'harmonic_', num2str(o.harm), ...
                     'Hz_offset_', num2str(o.offset), 'Hz_range_', ...
                     num2str(o.low_b), '_to_', num2str(o.up_b), ...
                     'Hz_dates_', o.init_date.date2str_nospace(), ...
@@ -169,6 +168,7 @@ classdef Comb
             path = ['/home/eilam.morag/public_html/Combs/', ...
                     o.combStrFile()];
             if (exist(path, 'dir') == 0)
+                disp(['Creating directory ', path]);
                 mkdir(path);
             end
             filename = [path, o.plot_filename()];
@@ -183,24 +183,6 @@ classdef Comb
                     num2str(o.offset), 'Hz_range', num2str(o.low_b), ...
                     '_to_', num2str(o.up_b)];
         end
-        % analyze: uses the bins property to index into data and analyzes
-        % it as is proper (AKA adding to the total and square properties)
-%         function [total, square, start] = analyze(obj, data)
-%             total = obj.total;
-%             square = obj.square;
-%             start = obj.start;
-%             while ( (obj.start <= length(obj.bins) )&& ...
-%                     (obj.bins(obj.start, 1) < freq + 100) )
-%                 % Use the next value of the bins (second column, which is
-%                 % the line number in the file) to index into the data
-%                 % matrix. Take the value from the second column, which is
-%                 % the normal power.
-% %                 data(bins(start, 2), :)
-%                 value = data(obj.bins(start, 2), 2);
-%                 total = total + value;
-%                 square = square + value^2;
-%                 start = start + 1;
-%             end
-%         end
+       
     end
 end
