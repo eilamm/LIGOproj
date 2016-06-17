@@ -171,7 +171,8 @@ classdef Comb
                 disp(['Creating directory ', path]);
                 mkdir(path);
             end
-            filename = [path, '/',o.plot_filename()];
+            filename = [path, '/', o.plot_filename()];
+            disp(['Saving file ', filename]);
             saveas(gcf, filename);
             
                 
