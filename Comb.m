@@ -166,10 +166,14 @@ classdef Comb
         % folder and creates an HTML script to write a webpage displaying
         % the plot.
         function saveall(o)
-            if (exist(o.combStrFile(), 'dir') == 0)
-                mkdir(o.combStrFile());
+            path = ['/home/eilam.morag/public_html/Combs/', ...
+                    o.combStrFile()];
+            if (exist(path, 'dir') == 0)
+                mkdir(path);
             end
-            saveas(gcf, o.plot_filename());
+            filename = [path, o.plot_filename()];
+            saveas(gcf, filename);
+            
                 
         end
         % printCombFile: returns as a string the important comb properties in a filename
