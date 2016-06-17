@@ -29,7 +29,8 @@ function genHTML(c)
             '   </h1>\n', ...
             '</body>\n', ...
             '</html>' ];
-    filename = [c.combStrFile(), '.html'];
+    filename = ['/home/eilam.morag/public_html/Combs/', ...
+                c.combStrFile(), '.html'];
     fileID = fopen(filename, 'w');
     fprintf(fileID, text);
     fclose(fileID);
