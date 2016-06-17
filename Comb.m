@@ -174,6 +174,7 @@ classdef Comb
             filename = [path, '/', o.plot_filename()];
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
+            genHTML(o);
             
                 
         end

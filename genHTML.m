@@ -4,6 +4,9 @@
 % webpage for each comb type. Input argument c should be a comb.
 
 function genHTML(c)
+    if (isa(c, Comb) == 0)
+        error('genHTML only accepts Comb types.');
+    end
     harm = num2str(c.harm);
     off = num2str(c.offset);
     low_b = num2str(c.low_b);
