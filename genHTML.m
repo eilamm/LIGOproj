@@ -30,7 +30,7 @@ function genHTML(c)
             '</body>\n', ...
             '</html>' ];
     filename = [c.combStrFile(), '.html'];
-    fileID = fopen(filename);
+    fileID = fopen(filename, 'w');
     fprintf(fileID, text);
     fclose(fileID);
 end
