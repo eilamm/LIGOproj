@@ -232,7 +232,8 @@ classdef Comb
         % showComb: Prints out a figure visually showing the comb structure
         function showComb(o)
             figure;
-            stem(o.bins(:, 1), 1);
+            y = ones(o.num_freq);
+            stem(o.bins(:, 1), y);
             if (o.type == 1)
                 title(['Visual Representation of Comb: Type 1, ', num2str(o.harm), ...
                     ' Hz Harmonics, ', num2str(o.offset), ...
