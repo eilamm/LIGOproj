@@ -172,15 +172,17 @@ classdef Comb
             if (exist(path, 'dir') == 0)
                 disp(['Creating directory ', path]);
                 mkdir(path);
+            end
+            
+            visual_comb = [path, '/comb.png'];
+            if (exist(visual_comb, 'file') == 0)
                 o.showComb();
             end
+            
             filename = [path, '/', o.plot_filename()];
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
-            o.showComb();
             genHTML(o);
-            
-                
         end
         % printCombFile: returns as a string the important comb properties in a filename
         % safe way (with underscores)
@@ -256,6 +258,56 @@ classdef Comb
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
             close(gcf);
+        end
+        
+        % printTextDataToFile: Prints out the text version of the data to a
+        % file
+        % YOU WERE RIGHT HERE -- JUNE 28 1:45 PM
+        function printTextDataToFile(o)
+            text = ['Data for Comb: ', o.strProp(); ...
+                    'Day#,Date,Avg,BlueErrorBar,RedErrorBar'];
+            date = o.init_date;
+            for i = 1:1:o.num_days
+                temp = [i, ',', date.date2str(), ',', o.day_avgs(i), ...
+                        ',', o.day_errors(i), ',', o.day_sft_errs(i)];
+                text = [text; temp]; 
+                date = date.next_day();
+            end
+            
+            filename = ['/home/eilam.morag/public_html/Combs/', ...
+                        c.combStrFile(), '/', c.txt_filename()];
+            fileID = fopen(filename, 'w');
+            fprintf(fileID, text);
+            fclose(fileID);
+        end
+        
+        % strHarm: Easy to use method to return the harmonic as a string
+        function s = strHarm(o)
+            s = [num2str(o.harm), ' Hz harmonic'];
+        end
+        % strOff: Easy to use method to return the offset as a string
+        function s = strOff(o)
+            s = [num2str(o.offset), ' Hz offset'];
+        end
+        % strRange: Easy to use method to return the frequency range as a
+        % string
+        function s = strRange(o)
+            s = ['Range: ', num2str(o.low_b), ' to ', num2str(o.up_b), ...
+                ' Hz'];
+        end
+        % strProp: Easy to use method to return all of the properties of a
+        % comb as a string
+        function s = strProp(o)
+            s = [o.strHarm(), '; ', o.strOff(), '; ', o.strRange()];
+        end
+        % txt_filename: Easy to use method to return the name of the text
+        % file for the comb as a string
+        function s = txt_filename(o)
+            s = ['Avg_norm_pwr_for_', 'harmonic_', num2str(o.harm), ...
+                    'Hz_offset_', num2str(o.offset), 'Hz_range_', ...
+                    num2str(o.low_b), '_to_', num2str(o.up_b), ...
+                    'Hz_dates_', o.init_date.date2str_nospace(), ...
+                    '_to_', o.end_date.date2str_nospace(), '.txt'];
         end
     end
 end

@@ -21,7 +21,7 @@ disp(['End date: ', END_DATE.date2str()]);
 % Until the constructor is made better.
 % lower bound, upper bound, offset, harmonic, ID
 c1 = Comb([0, 70, 0, 16, 1]);
-c2 = Comb([0, 3000, 0.25, 1, 2]);
+c2 = Comb([0, 3500, 0.25, 1, 2]);
 
 
 % c3 = Comb([0, 4000, 16, 1, 3]);
@@ -40,7 +40,7 @@ for x = 1:1:size(combs)
     combs(x) = combs(x).init();
 end
 
-combs(2) = combs(2).T2init(combs(1), 100);
+combs(2) = combs(2).T2init(combs(1), 300);
 % Preallocate memory for the date array
 % A difference in months means a full month. The rest of rough_size is made
 % up by the days we go into the last month.
@@ -80,6 +80,7 @@ for i = 1:1:size(combs)
     ylabel(combs(i).plot_ylabel());
     title(combs(i).plot_title());
     combs(i).saveall();
+    combs(i).printTextDataToFile();
     
     temp = START_DATE;
     
