@@ -202,7 +202,7 @@ classdef Comb
             T2.sep = sep;
             T2.bins = T2bins(T2, T1);
             temp = size(T2.bins);
-            T2.num_bins = temp(1);
+            T2.num_freq = temp(1);
         end
         % Calculates the bins for a Type 2 comb using a Type 1 comb.
         % Assumes the Type 2 comb has been initialized
