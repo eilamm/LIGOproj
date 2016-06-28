@@ -282,7 +282,7 @@ classdef Comb
             filename = ['/home/eilam.morag/public_html/Combs/', ...
                         o.combStrFile(), '/', o.txt_filename()];
             fileID = fopen(filename, 'w');
-            fprintf(fileID, out);
+            fprintf(fileID, '%s', out);
             fclose(fileID);
         end
         
