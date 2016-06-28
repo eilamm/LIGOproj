@@ -20,16 +20,18 @@ disp(['End date: ', END_DATE.date2str()]);
 
 % Until the constructor is made better.
 % lower bound, upper bound, offset, harmonic, ID
-c1 = Comb([0, 150, 0, 1, 1]);
-c2 = Comb([0, 150, 0.25, 1, 2]);
-c3 = Comb([0, 150, 0.50, 1, 3]);
-c4 = Comb([0, 150, 0.75, 1, 4]);
-c5 = Comb([150, 4000, 0, 1, 5]);
-c6 = Comb([150, 4000, 0.25, 1, 6]);
-c7 = Comb([150, 4000, 0.50, 1, 7]);
-c8 = Comb([150, 4000, 0.75, 1, 8]);
+c1 = Comb([0, 70, 0, 16, 1]);
+c2 = Comb([0, 3000, 0.25, 1, 2]);
 
-combs = [c1; c2; c3; c4; c5; c6; c7; c8];
+
+% c3 = Comb([0, 4000, 16, 1, 3]);
+% c4 = Comb([0, 150, 0.75, 1, 4]);
+% c5 = Comb([150, 4000, 0, 1, 5]);
+% c6 = Comb([150, 4000, 0.25, 1, 6]);
+% c7 = Comb([150, 4000, 0.50, 1, 7]);
+% c8 = Comb([150, 4000, 0.75, 1, 8]);
+
+combs = [c1; c2];
 
 for x = 1:1:size(combs)
     combs(x).init_date = START_DATE;
@@ -37,6 +39,7 @@ for x = 1:1:size(combs)
     combs(x) = combs(x).init();
 end
 
+c2 = c2.T2init(c1, 100);
 % Preallocate memory for the date array
 % A difference in months means a full month. The rest of rough_size is made
 % up by the days we go into the last month.
