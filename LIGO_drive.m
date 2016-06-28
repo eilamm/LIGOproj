@@ -31,6 +31,7 @@ c2 = Comb([0, 3000, 0.25, 1, 2]);
 % c7 = Comb([150, 4000, 0.50, 1, 7]);
 % c8 = Comb([150, 4000, 0.75, 1, 8]);
 
+% Note that these are copies of c1 and c2.
 combs = [c1; c2];
 
 for x = 1:1:size(combs)
@@ -39,7 +40,7 @@ for x = 1:1:size(combs)
     combs(x) = combs(x).init();
 end
 
-c2 = c2.T2init(c1, 100);
+combs(2) = combs(2).T2init(combs(1), 100);
 % Preallocate memory for the date array
 % A difference in months means a full month. The rest of rough_size is made
 % up by the days we go into the last month.

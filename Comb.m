@@ -67,7 +67,7 @@ classdef Comb
             end
             disp(['Comb ', num2str(obj.ID), ' is good.']);
         end
-        % init_bins: A copy of the old "calc_bins", does the exact same
+        % db: A copy of the old "calc_bins", does the exact same
         % thing, although the input arguments have been replaced by object
         % properties (and slightly renamed).
         function bins = init_bins(obj) 
