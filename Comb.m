@@ -268,7 +268,7 @@ classdef Comb
             header = 'Day#,Date,Avg,BlueErrorBar,RedErrorBar';
             text = '';
             date = o.init_date;
-            formatRow = '%s,%s,%s,%s,%s\n';
+            formatRow = '%s,%s,%s,%s,%s';
             formatAll = '%s\n%s';
             for i = 1:1:o.num_days
                 format
