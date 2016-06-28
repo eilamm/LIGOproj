@@ -23,6 +23,8 @@ classdef Comb
         start = 1;
         total = 0;
         square = 0;
+        type = 1;        % Type of comb. Can be 1 or 2.
+        sep = 0;         % For type 2 combs, the separation between combs
     end
     
     methods
@@ -170,10 +172,12 @@ classdef Comb
             if (exist(path, 'dir') == 0)
                 disp(['Creating directory ', path]);
                 mkdir(path);
+                o.showComb();
             end
             filename = [path, '/', o.plot_filename()];
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
+            o.showComb();
             genHTML(o);
             
                 
@@ -185,6 +189,71 @@ classdef Comb
                     num2str(o.offset), 'Hz_range', num2str(o.low_b), ...
                     '_to_', num2str(o.up_b)];
         end
-       
+
+        
+        
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Type 2 Comb %%%%%%%%%%%%%%%%%%%%%%
+        % T2init: Initializes a comb to be Type 2
+        function T2 = T2init(T2, T1, sep)
+            T2.harm = T1.harm;
+            T2.offset = T1.offset;
+            T2.type = 2;
+            T2.sep = sep;
+            T2.bins = T2bins(T2, T1);
+            T2.num_bins = size(T2.bins);
+        end
+        % Calculates the bins for a Type 2 comb using a Type 1 comb.
+        % Assumes the Type 2 comb has been initialized
+        function bins = T2bins(T2, T1)
+            bins = T1.bins;
+            T1.low_b = T1.low_b + T2.sep;
+            T1.offset = T1.offset + T2.sep;
+            if (T1.up_b + T2.sep > T2.up_b)
+                T1.up_b = T2.up_b;
+            else
+                T1.up_b = T1.up_b + T2.sep;
+            end
+            
+            while (T1.low_b < T2.up_b)
+                temp = T1.init_bins();
+                bins = [bins; temp];
+                T1.low_b = T1.low_b + T2.sep;
+                T1.offset = T1.offset + T2.sep;
+                if (T1.up_b + T2.sep > T2.up_b)
+                    T1.up_b = T2.up_b;
+                else
+                    T1.up_b = T1.up_b + T2.sep;
+                end
+            end
+        end
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%% General Functions %%%%%%%%%%%%%%%%%%%
+        % showComb: Prints out a figure visually showing the comb structure
+        function showComb(o)
+            figure;
+            stem(o.bins(1), 1);
+            if (o.type == 1)
+                title(['Visual Representation of Comb: Type 1, ', num2str(o.harm), ...
+                    ' Hz Harmonics, ', num2str(o.offset), ...
+                    ' Hz Offset, in Range ', num2str(o.low_b), '-', ...
+                    num2str(o.up_b), ' Hz']);
+            elseif (o.type == 2)
+                title(['Visual Representation of Comb: Type 2, ', num2str(o.harm), ...
+                    ' Hz Harmonics, ', num2str(o.offset), ...
+                    ' Hz Offset, in Range ', num2str(o.low_b), '-', ...
+                    num2str(o.up_b), ' Hz, ', num2str(o.sep), ' Hz Separation']);
+            end
+            xlabel('Frequency (Hz)');
+            ylabel('Teeth (Exist if value is 1)');
+            
+            
+            path = ['/home/eilam.morag/public_html/Combs/', ...
+                    o.combStrFile()];
+            filename = [path, '/comb.png'];
+            disp(['Saving file ', filename]);
+            saveas(gcf, filename);
+            close(gcf);
+        end
     end
 end
