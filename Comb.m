@@ -264,20 +264,22 @@ classdef Comb
         % file
         % YOU WERE RIGHT HERE -- JUNE 28 1:45 PM
         function printTextDataToFile(o)
-            title = ['Data for Comb: ', o.strProp(), '\n'];
-            header = 'Day#,Date,Avg,BlueErrorBar,RedErrorBar\n';
+            title = ['Data for Comb: ', o.strProp()];
+            header = 'Day#,Date,Avg,BlueErrorBar,RedErrorBar';
             text = '';
             date = o.init_date;
+            formatRow = '%s,%s,%s,%s,%s\n';
+            formatAll = '%s\n%s';
             for i = 1:1:o.num_days
-                temp = strcat(num2str(i), ',', date.date2str_nospace(), ',', ...
-                        num2str(o.day_avgs(i)), ',', ...
-                        num2str(o.day_errors(i)), ',', ...
-                        num2str(o.day_sft_errs(i)), '\n');
-                text = strcat(text, temp); 
+                format
+                temp = sprintf(formatRow, num2str(i), date.date2str_nospace(), ...
+                        num2str(o.day_avgs(i)),num2str(o.day_errors(i)), ...
+                        num2str(o.day_sft_errs(i)));
+                text = sprintf(formatAll, text, temp); 
                 date = date.next_day();
             end
-            
-            out = strcat(title, header, text);
+            formatSpec = '%s\n%s\n%s';
+            out = sprintf(formatSpec, title, header, text);
             
             filename = ['/home/eilam.morag/public_html/Combs/', ...
                         o.combStrFile(), '/', o.txt_filename()];
