@@ -277,7 +277,7 @@ classdef Comb
                 date = date.next_day();
             end
             
-            out = char(title, header, text);
+            out = string(char(title, header, text));
             
             filename = ['/home/eilam.morag/public_html/Combs/', ...
                         o.combStrFile(), '/', o.txt_filename()];
