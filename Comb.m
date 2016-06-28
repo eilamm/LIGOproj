@@ -278,7 +278,7 @@ classdef Comb
             out = char(title, header, text);
             
             filename = ['/home/eilam.morag/public_html/Combs/', ...
-                        c.combStrFile(), '/', c.txt_filename()];
+                        o.combStrFile(), '/', o.txt_filename()];
             fileID = fopen(filename, 'w');
             fprintf(fileID, out);
             fclose(fileID);
