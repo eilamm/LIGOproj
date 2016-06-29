@@ -265,10 +265,10 @@ classdef Comb
         % YOU WERE RIGHT HERE -- JUNE 28 1:45 PM
         function printTextDataToFile(o)
             title = ['Data for Comb: ', o.strProp()];
-            header = 'Day#,Date,Avg,BlueErrorBar,RedErrorBar';
+            header = 'Day#\tDate\tAvg\tBlueErrorBar\tRedErrorBar';
             text = '';
             date = o.init_date;
-            formatRow = '%s,%s,%s,%s,%s';
+            formatRow = '%s\t%s\t%s\t%s\t%s';
             formatAll = '%s\n%s';
             for i = 1:1:o.num_days
                 format
