@@ -265,7 +265,7 @@ classdef Comb
         % YOU WERE RIGHT HERE -- JUNE 28 1:45 PM
         function printTextDataToFile(o)
             title = ['Data for Comb: ', o.strProp()];
-            header = 'Day#\tDate\tAvg\tBlueErrorBar\tRedErrorBar';
+            header = sprintf('Day#\tDate\tAvg\tBlueErrorBar\tRedErrorBar');
             text = '';
             date = o.init_date;
             formatRow = '%s\t%s\t%s\t%s\t%s';
