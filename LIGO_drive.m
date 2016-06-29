@@ -12,7 +12,7 @@ close all;
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([15, 1, 2016]);
+START_DATE = Date([13, 9, 2015]);
 END_DATE = Date([21, 1, 2016]);
 
 disp(['Start date: ', START_DATE.date2str()]);
@@ -20,19 +20,29 @@ disp(['End date: ', END_DATE.date2str()]);
 
 % Until the constructor is made better.
 % lower bound, upper bound, offset, harmonic, ID
-c1 = Comb([0, 70, 0, 16, 1]);
-c2 = Comb([0, 3500, 0.25, 1, 2]);
+c1 = Comb([0, 150, 0, 16, 1]);
+c2 = Comb([0, 4000, 0, 16, 2]);
+c3 = Comb([150, 4000, 0, 16, 3]);
 
+c4 = Comb([0, 150, 0, 1, 4]);
+c5 = Comb([0, 4000, 0, 1, 5]);
+c6 = Comb([150, 4000, 0, 1, 6]);
 
-% c3 = Comb([0, 4000, 16, 1, 3]);
-% c4 = Comb([0, 150, 0.75, 1, 4]);
-% c5 = Comb([150, 4000, 0, 1, 5]);
-% c6 = Comb([150, 4000, 0.25, 1, 6]);
-% c7 = Comb([150, 4000, 0.50, 1, 7]);
-% c8 = Comb([150, 4000, 0.75, 1, 8]);
+c7 = Comb([0, 150, 0.25, 1, 7]);
+c8 = Comb([0, 4000, 0.25, 1, 8]);
+c9 = Comb([150, 4000, 0.25, 1, 9]);
+
+c10 = Comb([0, 150, 0.50, 1, 10]);
+c11 = Comb([0, 4000, 0.50, 1, 11]);
+c12 = Comb([150, 4000, 0.50, 1, 12]);
+
+c13 = Comb([0, 150, 0.75, 1, 13]);
+c14 = Comb([0, 4000, 0.75, 1, 14]);
+c15 = Comb([150, 4000, 0.75, 1, 15]);
+
 
 % Note that these are copies of c1 and c2.
-combs = [c1; c2];
+combs = [c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c11; c12; c13; c14; c15];
 
 for x = 1:1:size(combs)
     combs(x).init_date = START_DATE;
@@ -40,7 +50,7 @@ for x = 1:1:size(combs)
     combs(x) = combs(x).init();
 end
 
-combs(2) = combs(2).T2init(combs(1), 300);
+% combs(2) = combs(2).T2init(combs(1), 300);
 % Preallocate memory for the date array
 % A difference in months means a full month. The rest of rough_size is made
 % up by the days we go into the last month.

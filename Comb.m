@@ -187,13 +187,11 @@ classdef Comb
         % printCombFile: returns as a string the important comb properties in a filename
         % safe way (with underscores)
         function str = combStrFile(o)
-            str = ['Harmonic', num2str(o.harm), 'Hz_offset', ...
-                    num2str(o.offset), 'Hz_range', num2str(o.low_b), ...
+            str = ['Harmonic_', num2str(o.harm), '_Hz_offset_', ...
+                    num2str(o.offset), '_Hz_range_', num2str(o.low_b), ...
                     '_to_', num2str(o.up_b)];
         end
 
-        
-        
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Type 2 Comb %%%%%%%%%%%%%%%%%%%%%%
         % T2init: Initializes a comb to be Type 2
@@ -265,7 +263,7 @@ classdef Comb
         % YOU WERE RIGHT HERE -- JUNE 28 1:45 PM
         function printTextDataToFile(o)
             title = ['Data for Comb: ', o.strProp()];
-            header = sprintf('Day#\tDate\tAvg\tBlueErrorBar\tRedErrorBar');
+            header = sprintf('Day#\tDate\t\tAvg\tBlueErrorBar\tRedErrorBar');
             text = '';
             date = o.init_date;
             formatRow = '%s\t%s\t%s\t%s\t%s';
@@ -299,7 +297,7 @@ classdef Comb
         % strRange: Easy to use method to return the frequency range as a
         % string
         function s = strRange(o)
-            s = ['Range: ', num2str(o.low_b), ' to ', num2str(o.up_b), ...
+            s = ['Range - ', num2str(o.low_b), ' to ', num2str(o.up_b), ...
                 ' Hz'];
         end
         % strProp: Easy to use method to return all of the properties of a
