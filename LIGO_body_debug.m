@@ -63,18 +63,22 @@ function c = LIGO_body_debug(c)
                         % matrix. Take the value from the second column, which is
                         % the normal power.
         %                 data(bins(start, 2), :)
+        
+                        % DEBUG PART BELOW
+                        if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
+                            sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...
+                                ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
+                                ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1))
+                        end
+                        % DEBUG PART ABOVE
+        
+        
                         value = data(c(j).bins(start, 2), 2);
                         total = total + value;
                         square = square + value^2;
                         start = start + 1;
                         
-                        % DEBUG PART BELOW
-                        if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
-                            sprintf('%s%i%s%i%s%d%s%d', 'Unequal for Comb ', c(j).ID, ...
-                                ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
-                                ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1))
-                        end
-                        % DEBUG PART ABOVE
+                        
                     end
                     
                     
