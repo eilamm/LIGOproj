@@ -46,7 +46,7 @@ c16 = Comb([10, 110, 1, 2, 16]);
 
 
 % Note that these are copies of c1 and c2.
-combs = [c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c11; c12; c13; c14; c15; c16];
+combs = [c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c11; c12; c13; c14; c15; c1];
 % combs = [c16];
 
 for x = 1:1:size(combs)
