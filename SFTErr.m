@@ -12,7 +12,7 @@ function e = SFTErr(path, teeth)
     
     e = 1/sqrt(numSFTs*teeth);
     % If there was no data for a day or no SFTs, return NaN
-    if (isnan(teeth) || numSFTs == 0)
+    if (isnan(teeth) || numSFTs == 0 || e == Inf)
         e = NaN;
     end
 end
