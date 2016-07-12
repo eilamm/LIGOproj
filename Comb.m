@@ -75,7 +75,7 @@ classdef Comb
             too_low = 0;
             num_bins = 0;
             for i = obj.offset:obj.harm:obj.up_b
-                if (i > obj.low_b)
+                if (i >= obj.low_b)
                     num_bins = num_bins + 1;
                 else
                     too_low = too_low + 1;
