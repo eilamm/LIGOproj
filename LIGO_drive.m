@@ -10,7 +10,7 @@
 clear variables; 
 close all;
 
-debug = input('Enter "db" for debug mode; enter anything to continue normally');
+debug = input('Enter "d" for debug mode; enter anything to continue normally: ');
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
