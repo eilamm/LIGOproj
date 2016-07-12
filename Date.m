@@ -113,7 +113,11 @@ classdef Date
                 case 1
                     days = 31;
                 case 2
-                    days = 28;
+                    if (obj.isLeapYear() == 1)
+                        days = 29;
+                    else
+                        days = 28;
+                    end
                 case 3 
                     days = 31;
                 case 4
@@ -248,8 +252,12 @@ classdef Date
         % last_of_month: Returns a 1 if the object's day is the last of the
         % month. Returns a zero otherwise. 
         function r = last_of_month(obj)
-            if (obj.month == 2 && obj.day == 28)
-                r = 1;
+            if (obj.month == 2)
+                if (obj.isLeapYear() == 1 && obj.day == 29)
+                    r = 1;
+                elseif (obj.isLeapYear() == 0 && obj.day == 28)
+                    r = 1;
+                end
             elseif ((obj.day == 30) && (obj.month == 4 || obj.month == 6 ...
                     || obj.month == 9 || obj.month == 11))
                 r = 1;
@@ -268,6 +276,25 @@ classdef Date
                 date = next_month(obj);
             else
                 date.day = date.day + 1;
+            end
+        end
+        
+        % isLeapYear: Returns a 1 if the date provided is in a leap year,
+        % else returns a zero.
+        function r = isLeapYear(obj)
+            y = obj.year;
+            if (mod(y, 4) == 0)
+                if (mod(y, 100) == 0)
+                    if (mod(y, 400) == 0)
+                        r = 1;
+                    else
+                        r = 0;
+                    end
+                else
+                    r = 1;
+                end
+            else
+                r = 0;
             end
         end
         % add_days: adds the integer number of 'days' to the date. Returns
