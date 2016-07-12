@@ -64,6 +64,9 @@ function c = LIGO_body_debug(c)
                         % the normal power.
         %                 data(bins(start, 2), :)
         
+        
+                        % WHERE YOU LEFT OFF. Apparently moving this fixed
+                        % a bug? Investigate.
                         % DEBUG PART BELOW
                         if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
                             sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...

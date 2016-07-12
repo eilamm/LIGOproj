@@ -67,6 +67,7 @@ disp(['Working. This will take around ', num2str(minutes), ' minutes.']);
 disp(['Beginning time is ', datestr(now)]);
 
 if (strcmp(debug, 'db') == 1)
+    disp('Debug mode'); 
     combs = LIGO_body_debug(combs);
 else
     combs = LIGO_body(combs);
