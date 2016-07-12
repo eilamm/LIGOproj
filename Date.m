@@ -252,12 +252,10 @@ classdef Date
         % last_of_month: Returns a 1 if the object's day is the last of the
         % month. Returns a zero otherwise. 
         function r = last_of_month(obj)
-            if (obj.month == 2)
-                if (obj.isLeapYear() == 1 && obj.day == 29)
-                    r = 1;
-                elseif (obj.isLeapYear() == 0 && obj.day == 28)
-                    r = 1;
-                end
+            if (obj.month == 2 && obj.isLeapYear() == 1 && obj.day == 29)
+                r = 1;
+            elseif (obj.month == 2 && obj.isLeapYear() == 0 && obj.day == 28)
+                r = 1;
             elseif ((obj.day == 30) && (obj.month == 4 || obj.month == 6 ...
                     || obj.month == 9 || obj.month == 11))
                 r = 1;
