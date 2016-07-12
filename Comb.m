@@ -65,7 +65,7 @@ classdef Comb
                     ' is not less than the upper bound, ', ...
                     num2str(obj.up_b)]);
             end
-            disp(['Comb ', num2str(obj.ID), ' is good.']);
+            % disp(['Comb ', num2str(obj.ID), ' is good.']);
         end
         % db: A copy of the old "calc_bins", does the exact same
         % thing, although the input arguments have been replaced by object

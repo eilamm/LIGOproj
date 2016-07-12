@@ -10,6 +10,8 @@
 clear variables; 
 close all;
 
+debug = input('Enter "db" for debug mode; enter anything to continue normally');
+
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
 START_DATE = Date([26, 2, 2015]);
@@ -51,6 +53,7 @@ for x = 1:1:size(combs)
     combs(x).init_date = START_DATE;
     combs(x).end_date = END_DATE;
     combs(x) = combs(x).init();
+    sprintf('%s%d%s', 'Comb ', x, ' is good.\n');
 end
 
 % combs(2) = combs(2).T2init(combs(1), 300);
@@ -63,7 +66,11 @@ minutes = num_days/30*5;
 disp(['Working. This will take around ', num2str(minutes), ' minutes.']);
 disp(['Beginning time is ', datestr(now)]);
 
-combs = LIGO_body(combs);
+if (strcmp(debug, 'db') == 1)
+    combs = LIGO_body_debug(combs);
+else
+    combs = LIGO_body(combs);
+end
 
 % plot(1:1:rough_size, day_averages, '*');
 for i = 1:1:size(combs)
