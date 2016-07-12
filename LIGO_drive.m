@@ -44,7 +44,7 @@ disp(['End date: ', END_DATE.date2str()]);
 % 
 % c16 = Comb([10, 110, 1, 2, 16]);
 
-c17 = Comb([0, 4000, 0, 2, 16]);
+c17 = Comb([0, 4000, 0, 2, 17]);
 
 
 % Note that these are copies of c1 and c2.
@@ -55,7 +55,7 @@ for x = 1:1:size(combs)
     combs(x).init_date = START_DATE;
     combs(x).end_date = END_DATE;
     combs(x) = combs(x).init();
-    s = sprintf('%s%d%s', 'Comb ', x, ' is good.');
+    s = sprintf('%s%d%s', 'Comb ', combs(x).ID, ' is good.');
     disp(s);
 end
 
