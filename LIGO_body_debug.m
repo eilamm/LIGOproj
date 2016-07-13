@@ -42,14 +42,9 @@ function c = LIGO_body_debug(c)
         for freq = fileA:100:fileZ
             [data, file_exists, path] = read_data_new(d, m, y, freq);
             if (file_exists == 1)
-                
-                
                 % Third loop. Iterates through all of the Comb objects
                 % contained in the combs container.
-                for j = 1:1:size(c)
-                    
-                   
-                    
+                for j = 1:1:size(c) 
                     total = c(j).total;
                     square = c(j).square;
                     start = c(j).start;           
@@ -74,8 +69,19 @@ function c = LIGO_body_debug(c)
                                 ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1))
                         end
                         % DEBUG PART ABOVE
-        
-        
+                        % DEBUG PART BELOW
+                        % Test if the frequencies are constantly
+                        % increasing, which they should be.
+                        if (c(j).bins(start, 1) <= c(j).DEBUG_lastf)
+                            s = sprintf('%s%i%s%s%i', 'Comb ', c(j).ID, ' frequencies ' ...
+                                , 'not strictly increasing at index ', start);
+                            error(s);
+                        else
+                            c(j).DEBUG_lastf = c(j).bins(start, 1);
+                        end
+                        
+                        % DEBUG PART ABOVE
+                
                         value = data(c(j).bins(start, 2), 2);
                         total = total + value;
                         square = square + value^2;

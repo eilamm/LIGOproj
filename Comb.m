@@ -25,6 +25,7 @@ classdef Comb
         square = 0;
         type = 1;        % Type of comb. Can be 1 or 2.
         sep = 0;         % For type 2 combs, the separation between combs
+        DEBUG_lastf = -1;
     end
     
     methods
