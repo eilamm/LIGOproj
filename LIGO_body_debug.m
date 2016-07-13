@@ -68,6 +68,7 @@ function c = LIGO_body_debug(c)
                                 ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
                                 ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1))
                         end
+                        data(c(j).bins(start, 2), :)
                         % DEBUG PART ABOVE
                         % DEBUG PART BELOW
                         % Test if the frequencies are constantly
