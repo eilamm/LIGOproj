@@ -105,6 +105,7 @@ function c = LIGO_body_debug(c)
                 % File doesn't exist, skip inner loop
             end
         end
+        % Save values for day and prepare constants for next day
         for k = 1:1:size(c)
             if (c(k).total == -1)
                 avg = NaN;
@@ -121,6 +122,7 @@ function c = LIGO_body_debug(c)
             c(k).total = 0;
             c(k).square = 0;
             c(k).start = 1;
+            c(k).DEBUG_lastf = -1;
         end
         date = date.next_day();
     end
