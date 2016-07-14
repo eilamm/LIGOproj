@@ -46,7 +46,7 @@ disp(['End date: ', END_DATE.date2str()]);
 
 % c17 = Comb([0, 4000, 0, 2, 17]);
 
-c18 = Comb([50, 100, 0.5, 1, 18]);
+c18 = Comb([9, 175, 0.999951, 1.999951, 18]);
 
 
 % Note that these are copies of c1 and c2.
