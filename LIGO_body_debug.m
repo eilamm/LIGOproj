@@ -54,9 +54,9 @@ function c = LIGO_body_debug(c)
                             % print an error message.
                             if (DEBUG_arr(2) ~= min(DEBUG_arr))
                                 s = sprintf('%s%f\n%s', 'Looking for ', DB_freq, 'Selected frequency is NOT best local option:');
-                                disp(s);
-                                DEBUG_arr
-                                disp('');
+                                error(s);
+%                                 DEBUG_arr
+%                                 disp('');
                             else
                                 s = sprintf('%s\n', 'Selected frequency is best local option');
                                 disp(s);

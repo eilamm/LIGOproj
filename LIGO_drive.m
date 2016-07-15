@@ -47,11 +47,13 @@ disp(['End date: ', END_DATE.date2str()]);
 % c17 = Comb([0, 4000, 0, 2, 17]);
 
 c18 = Comb([9, 175, 0.999951, 1.999951, 18]);
+c19 = Comb([0, 4000, 12.47285, 12.28695, 19]);
+c20 = Comb([2000, 3000, 58.3332, 3.57381, 20]);
 
 
 % Note that these are copies of c1 and c2.
 % combs = [c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c11; c12; c13; c14; c15; c16];
-combs = [c18];
+combs = [c18; c19; c20];
 
 for x = 1:1:size(combs)
     combs(x).init_date = START_DATE;
