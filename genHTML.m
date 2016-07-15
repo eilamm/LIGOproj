@@ -7,8 +7,17 @@ function genHTML(c)
     if (isa(c, 'Comb') == 0)
         error('genHTML only accepts Comb types.');
     end
-    harm = num2str(c.harm);
-    off = num2str(c.offset);
+    if (isa(c.harm, 'integer'))
+        harm = num2str(c.harm);
+    else
+        harm = sprintf('%f', c.harm);
+    end
+    if (isa(c.offset, 'integer'))
+        off = num2str(c.offset);
+    else
+        off = sprintf('%f', c.offset);
+    end
+    
     low_b = num2str(c.low_b);
     up_b = num2str(c.up_b);
     d1 = c.init_date.date2str();
