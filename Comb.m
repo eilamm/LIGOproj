@@ -124,8 +124,18 @@ classdef Comb
         % plot_title: returns a string that should be used as the title of
         % the plot of the object's data
         function str = plot_title(o)
-            str = ['Average normalized power for ', num2str(o.harm), ...
-                    ' Hz Harmonics with offset ', num2str(o.offset), ...
+            if (isa(o.harm, 'integer'))
+                harmo = num2str(o.harm);
+            else
+                harmo = sprintf('%f', o.harm);
+            end
+            if (isa(o.offset, 'integer'))
+                off = num2str(o.offset);
+            else
+                off = sprintf('%f', o.offset);
+            end
+            str = ['Average normalized power for ', harmo, ...
+                    ' Hz Harmonics with offset ', off, ...
                     ' Hz in range ', num2str(o.low_b), '-', ...
                     num2str(o.up_b), ' Hz between ',  ...
                     o.init_date.date2str(), ' and ',  ...
@@ -144,8 +154,19 @@ classdef Comb
         % plot_filename: returns a string that should be used as the file
         % name for the plot
         function str = plot_filename(o)
-            str = ['Avg_norm_pwr_for_', 'harmonic_', num2str(o.harm), ...
-                    'Hz_offset_', num2str(o.offset), 'Hz_range_', ...
+            if (isa(o.harm, 'integer'))
+                harmo = num2str(o.harm);
+            else
+                harmo = sprintf('%f', o.harm);
+            end
+            if (isa(o.offset, 'integer'))
+                off = num2str(o.offset);
+            else
+                off = sprintf('%f', o.offset);
+            end
+            
+            str = ['Avg_norm_pwr_for_', 'harmonic_', harmo, ...
+                    'Hz_offset_', off, 'Hz_range_', ...
                     num2str(o.low_b), '_to_', num2str(o.up_b), ...
                     'Hz_dates_', o.init_date.date2str_nospace(), ...
                     '_to_', o.end_date.date2str_nospace(), '.png'];
@@ -188,8 +209,18 @@ classdef Comb
         % printCombFile: returns as a string the important comb properties in a filename
         % safe way (with underscores)
         function str = combStrFile(o)
-            str = ['Harmonic_', num2str(o.harm), '_Hz_offset_', ...
-                    num2str(o.offset), '_Hz_range_', num2str(o.low_b), ...
+            if (isa(o.harm, 'integer'))
+                harmo = num2str(o.harm);
+            else
+                harmo = sprintf('%f', o.harm);
+            end
+            if (isa(o.offset, 'integer'))
+                off = num2str(o.offset);
+            else
+                off = sprintf('%f', o.offset);
+            end
+            str = ['Harmonic_', harmo, '_Hz_offset_', ...
+                    off, '_Hz_range_', num2str(o.low_b), ...
                     '_to_', num2str(o.up_b)];
         end
 
