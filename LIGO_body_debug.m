@@ -73,7 +73,7 @@ function c = LIGO_body_debug(c)
                         % DEBUG PART ABOVE
                         
                         % DEBUG PART BELOW
-                        DB_freq = c(j).bin(start, 1);
+                        DB_freq = c(j).bins(start, 1);
                         DEBUG_arr = [DB_freq - data( c(j).bins(start, 2) - 1, 1 ); ...
                                      DB_freq - data( c(j).bins(start, 2), 1 ); ...
                                      DB_freq - data( c(j).bins(start, 2) + 1, 1 )];
