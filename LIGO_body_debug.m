@@ -69,7 +69,7 @@ function c = LIGO_body_debug(c)
                         % if the harmonics are non-integer and the
                         % frequency in the bins doesn't exist in the data)
                         if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
-                            s = sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...
+                            s = sprintf('%s%i%s%i%s%d%s%d', 'Unequal for Comb ', c(j).ID, ...
                                 ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
                                 ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1));
                             disp(s);
@@ -86,8 +86,10 @@ function c = LIGO_body_debug(c)
                                 s = sprintf('%s%f\n%s', 'Looking for ', DB_freq, 'Selected frequency is NOT best local option:');
                                 disp(s);
                                 DEBUG_arr
+                                disp('');
                             else
-                                disp('Selected frequency is best local option');
+                                s = sprintf('%s\n', 'Selected frequency is best local option');
+                                disp(s);
                             end
                             
                         end
