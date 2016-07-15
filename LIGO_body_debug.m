@@ -60,9 +60,14 @@ function c = LIGO_body_debug(c)
         %                 data(bins(start, 2), :)
         
         
-                        % WHERE YOU LEFT OFF. Apparently moving this fixed
-                        % a bug? Investigate.
+                        
                         % DEBUG PART BELOW
+                        % Test to make sure that the frequency in the bins
+                        % is the same frequency retrieved from the data
+                        % file. If they're not the same, check to see if
+                        % the retrieved frequency is the best option (e.g.
+                        % if the harmonics are non-integer and the
+                        % frequency in the bins doesn't exist in the data)
                         if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
                             s = sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...
                                 ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
@@ -73,9 +78,10 @@ function c = LIGO_body_debug(c)
                             DEBUG_arr = [abs(DB_freq - data( c(j).bins(start, 2) - 1, 1 )); ...
                                          abs(DB_freq - data( c(j).bins(start, 2), 1 )); ...
                                          abs(DB_freq - data( c(j).bins(start, 2) + 1, 1 ))];
-                            % If the index we're supposed to look at does not
-                            % contain the frequency closest to the one we're
-                            % looking for, print an error message.
+                            % If the index calculated by Comb.init_bins
+                            % does not give the closest frequency to the
+                            % frequency caluclated by Comb.init_bins, then
+                            % print an error message.
                             if (DEBUG_arr(2) ~= min(DEBUG_arr))
                                 s = sprintf('%s%f\n%s', 'Looking for ', DB_freq, 'Selected frequency is NOT best local option:');
                                 disp(s);
@@ -85,24 +91,9 @@ function c = LIGO_body_debug(c)
                             end
                             
                         end
+                        % DEBUG PART ABOVE
                         
 
-                        % DEBUG PART ABOVE
-                        
-                        % DEBUG PART BELOW
-                        DB_freq = c(j).bins(start, 1);
-                        DEBUG_arr = [abs(DB_freq - data( c(j).bins(start, 2) - 1, 1 )); ...
-                                     abs(DB_freq - data( c(j).bins(start, 2), 1 )); ...
-                                     abs(DB_freq - data( c(j).bins(start, 2) + 1, 1 ))];
-                        % If the index we're supposed to look at does not
-                        % contain the frequency closest to the one we're
-                        % looking for, print an error message.
-                        if (DEBUG_arr(2) ~= min(DEBUG_arr))
-                            s = sprintf('%s%d%s', 'Looking for ', DB_freq, ', index did not point to closest freq');
-                            disp(s);
-                            DEBUG_arr
-                        end
-                        % DEBUG PART ABOVE
                         
                         % DEBUG PART BELOW
                         % Test if the frequencies are constantly
