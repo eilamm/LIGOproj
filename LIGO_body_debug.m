@@ -63,13 +63,29 @@ function c = LIGO_body_debug(c)
                         % WHERE YOU LEFT OFF. Apparently moving this fixed
                         % a bug? Investigate.
                         % DEBUG PART BELOW
-                        if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
-                            sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...
-                                ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
-                                ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1))
-                        end
-                        data(c(j).bins(start, 2), :)
+%                         if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
+%                             sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...
+%                                 ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
+%                                 ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1))
+%                         end
+                        
+
                         % DEBUG PART ABOVE
+                        
+                        % DEBUG PART BELOW
+                        DB_freq = c(j).bin(start, 1);
+                        DEBUG_arr = [DB_freq - data( c(j).bins(start, 2) - 1, 1 ); ...
+                                     DB_freq - data( c(j).bins(start, 2), 1 ); ...
+                                     DB_freq - data( c(j).bins(start, 2) + 1, 1 )];
+                        % If the index we're supposed to look at does not
+                        % contain the frequency closest to the one we're
+                        % looking for, print an error message.
+                        if (DEBUG_arr(2) ~= min(DEBUG_arr))
+                            sprintf('%s%d%s', 'Looking for ', DB_freq, ', index did not point to closest freq');
+                            DEBUG_arr
+                        end
+                        % DEBUG PART ABOVE
+                        
                         % DEBUG PART BELOW
                         % Test if the frequencies are constantly
                         % increasing, which they should be.
