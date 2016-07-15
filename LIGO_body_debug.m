@@ -81,7 +81,8 @@ function c = LIGO_body_debug(c)
                         % contain the frequency closest to the one we're
                         % looking for, print an error message.
                         if (DEBUG_arr(2) ~= min(DEBUG_arr))
-                            sprintf('%s%d%s', 'Looking for ', DB_freq, ', index did not point to closest freq');
+                            s = sprintf('%s%d%s', 'Looking for ', DB_freq, ', index did not point to closest freq');
+                            disp(s);
                             DEBUG_arr
                         end
                         % DEBUG PART ABOVE
