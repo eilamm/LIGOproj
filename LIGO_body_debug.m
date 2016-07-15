@@ -63,11 +63,28 @@ function c = LIGO_body_debug(c)
                         % WHERE YOU LEFT OFF. Apparently moving this fixed
                         % a bug? Investigate.
                         % DEBUG PART BELOW
-%                         if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
-%                             sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...
-%                                 ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
-%                                 ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1))
-%                         end
+                        if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
+                            s = sprintf('%s%i%s%i%s%d%s%d\n', 'Unequal for Comb ', c(j).ID, ...
+                                ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
+                                ', actual frequency retrieved is ', data(c(j).bins(start, 2), 1));
+                            disp(s);
+                            
+                            DB_freq = c(j).bins(start, 1);
+                            DEBUG_arr = [abs(DB_freq - data( c(j).bins(start, 2) - 1, 1 )); ...
+                                         abs(DB_freq - data( c(j).bins(start, 2), 1 )); ...
+                                         abs(DB_freq - data( c(j).bins(start, 2) + 1, 1 ))];
+                            % If the index we're supposed to look at does not
+                            % contain the frequency closest to the one we're
+                            % looking for, print an error message.
+                            if (DEBUG_arr(2) ~= min(DEBUG_arr))
+                                s = sprintf('%s%f\n%s', 'Looking for ', DB_freq, 'Selected frequency is NOT best local option:');
+                                disp(s);
+                                DEBUG_arr
+                            else
+                                disp('Selected frequency is best local option');
+                            end
+                            
+                        end
                         
 
                         % DEBUG PART ABOVE
