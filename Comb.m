@@ -343,11 +343,19 @@ classdef Comb
         
         % strHarm: Easy to use method to return the harmonic as a string
         function s = strHarm(o)
-            s = [num2str(o.harm), ' Hz harmonic'];
+            if (isint(o.harm))
+                s = [num2str(o.harm), ' Hz harmonic'];
+            else
+                s = sprintf('%f%s', o.harm, ' Hz harmonic');
+            end
         end
         % strOff: Easy to use method to return the offset as a string
         function s = strOff(o)
-            s = [num2str(o.offset), ' Hz offset'];
+            if (isint(o.offset))
+                s = [num2str(o.offset), ' Hz offset'];
+            else
+                s = sprintf('%f%s', o.offset, ' Hz offset');
+            end
         end
         % strRange: Easy to use method to return the frequency range as a
         % string
