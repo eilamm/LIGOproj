@@ -145,6 +145,8 @@ classdef Comb
         % xlabel of the plot of the object's data
         function str = plot_xlabel(o)
             str = ['Days since ', o.init_date.date2str()];
+            % Set the x-axis ticks to be integers only.
+            set(gca, 'xtick', 0:1:o.num_days-1); 
         end
         % plot_xlabel: returns a string that should be used for the 
         % ylabel of the plot of the object's data
