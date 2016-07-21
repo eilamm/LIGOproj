@@ -156,6 +156,8 @@ classdef Comb
         % ylabel of the plot of the object's data
         function str = plot_ylabel(o)
             str = 'Average normalized power';
+            % Pad the y-axis so the minimum limit is 0
+            ylim([0 (ylim(2))]);
         end
         % plot_filename: returns a string that should be used as the file
         % name for the plot
