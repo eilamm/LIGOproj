@@ -97,7 +97,7 @@ for i = 1:1:size(combs)
     errorbar(0:1:num_days-1, day_averages, day_errors, 'o');
     green_line = @(t) 1;
     hold on;
-    fplot(green_line, [0 num_days-1], 'Color', 'g');
+    fplot(green_line, xlim, 'Color', 'g');
     hold on;
     errorbar(0:1:num_days-1, day_averages, day_sft_errs, 'ro');
     combs(i).plot_vlines();
