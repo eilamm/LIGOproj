@@ -199,6 +199,9 @@ classdef Comb
             visual_comb = [path, '/comb.png'];
             if (exist(visual_comb, 'file') == 0)
                 o.showComb();
+            % REMOVE THIS AFTER RUN: July 21, 2016
+            else
+                o.showComb();
             end
             
             filename = [path, '/', o.plot_filename()];
@@ -262,8 +265,11 @@ classdef Comb
         end
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%% General Functions %%%%%%%%%%%%%%%%%%%
-        % showComb: Prints out a figure visually showing the comb structure
+        % showComb: Saves a figure visually showing the comb structure as 
+        % 'comb.png'. Also, saves a text file listing the teeth of the 
+        % comb as 'comb.txt'.
         function showComb(o)
+            % Visual representation of comb (comb.png)
             figure;
             y = ones(o.num_freq,1);
             stem(o.bins(:, 1), y);
@@ -288,6 +294,20 @@ classdef Comb
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
             close(gcf);
+            
+            % Text representation of comb (comb.txt)
+            header = sprintf('%s%s', 'Teeth for Comb with properties: ', o.strProp());
+            text = '';
+            for i = 1:1:length(o.bins)
+                tooth = sprintf('%s', o.bins(i, 1));
+                text = sprintf('%s\n%s', text, tooth); 
+            end
+            out = sprintf('%s\n%s', header, text);
+            filename = [path, '/comb.txt'];
+            disp(['Saving file ', filename]);
+            fileID = fopen(filename, 'w');
+            fprintf(fileID, out);
+            fclose(fileID);            
         end
         
         % printTextDataToFile: Prints out the text version of the data to a
