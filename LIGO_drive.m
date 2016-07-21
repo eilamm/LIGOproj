@@ -97,14 +97,14 @@ for i = 1:1:size(combs)
     errorbar(0:1:num_days-1, day_averages, day_errors, 'o');
     green_line = @(t) 1;
     hold on;
-    fplot(green_line, xlim, 'Color', 'g');
-    hold on;
     errorbar(0:1:num_days-1, day_averages, day_sft_errs, 'ro');
     combs(i).plot_vlines();
 
-    %Technically it's off by one, since day 1 is the start_date. Requires
-    %slight tweaking.
+    % plot_xlabel also modifies the x-axis so it looks good. That's why the
+    % green line is plotted after it is called.
     xlabel(combs(i).plot_xlabel());
+    hold on;
+    fplot(green_line, xlim, 'Color', 'g');
     ylabel(combs(i).plot_ylabel());
     title(combs(i).plot_title());
     combs(i).saveall();
