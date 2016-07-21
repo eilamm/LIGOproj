@@ -94,12 +94,12 @@ for i = 1:1:size(combs)
     END_FREQ = combs(i).up_b;
     
     figure;
-    errorbar(0:1:num_days-1, day_averages, day_errors, 'o');
+    errorbar(1:1:num_days, day_averages, day_errors, 'o');
     green_line = @(t) 1;
     hold on;
     fplot(green_line, [1 num_days], 'Color', 'g');
     hold on;
-    errorbar(0:1:num_days-1, day_averages, day_sft_errs, 'ro');
+    errorbar(1:1:num_days, day_averages, day_sft_errs, 'ro');
     combs(i).plot_vlines();
 
     %Technically it's off by one, since day 1 is the start_date. Requires
