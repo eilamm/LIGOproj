@@ -124,12 +124,12 @@ classdef Comb
         % plot_title: returns a string that should be used as the title of
         % the plot of the object's data
         function str = plot_title(o)
-            if (isa(o.harm, 'integer'))
+            if (isint(o.harm))
                 harmo = num2str(o.harm);
             else
                 harmo = sprintf('%f', o.harm);
             end
-            if (isa(o.offset, 'integer'))
+            if (isint(o.offset))
                 off = num2str(o.offset);
             else
                 off = sprintf('%f', o.offset);
@@ -154,12 +154,12 @@ classdef Comb
         % plot_filename: returns a string that should be used as the file
         % name for the plot
         function str = plot_filename(o)
-            if (isa(o.harm, 'integer'))
+            if (isint(o.harm))
                 harmo = num2str(o.harm);
             else
                 harmo = sprintf('%f', o.harm);
             end
-            if (isa(o.offset, 'integer'))
+            if (isint(o.offset))
                 off = num2str(o.offset);
             else
                 off = sprintf('%f', o.offset);
@@ -212,12 +212,12 @@ classdef Comb
         % printCombFile: returns as a string the important comb properties in a filename
         % safe way (with underscores)
         function str = combStrFile(o)
-            if (isa(o.harm, 'integer'))
+            if (isint(o.harm))
                 harmo = num2str(o.harm);
             else
                 harmo = sprintf('%f', o.harm);
             end
-            if (isa(o.offset, 'integer'))
+            if (isint(o.offset))
                 off = num2str(o.offset);
             else
                 off = sprintf('%f', o.offset);
@@ -299,7 +299,7 @@ classdef Comb
             header = sprintf('%s%s', 'Teeth for Comb with properties: ', o.strProp());
             text = '';
             for i = 1:1:length(o.bins)
-                tooth = sprintf('%s', o.bins(i, 1));
+                tooth = sprintf('%f', o.bins(i, 1));
                 text = sprintf('%s\n%s', text, tooth); 
             end
             out = sprintf('%s\n%s', header, text);
