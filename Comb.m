@@ -201,9 +201,6 @@ classdef Comb
             visual_comb = [path, '/comb.png'];
             if (exist(visual_comb, 'file') == 0)
                 o.showComb();
-            % REMOVE THIS AFTER RUN: July 21, 2016
-            else
-                o.showComb();
             end
             
             filename = [path, '/', o.plot_filename()];
