@@ -114,10 +114,6 @@ for i = 1:1:size(combs)
     
     disp(' ');
     disp(' ');
-%     for j = 1:1:num_days
-%         disp([temp.date2str(), ': ', num2str(day_averages(j))]);
-%         temp = temp.next_day();
-%     end
 end
 disp(['Ending time is ', datestr(now)]);
 disp('DONE');
