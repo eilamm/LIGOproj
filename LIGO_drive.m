@@ -99,14 +99,16 @@ for i = 1:1:size(combs)
     green_line = @(t) 1;
     hold on;
     errorbar(0:1:num_days-1, day_averages, day_sft_errs, 'ro');
-    combs(i).plot_vlines();
 
     % plot_xlabel also modifies the x-axis so it looks good. That's why the
     % green line is plotted after it is called.
     xlabel(combs(i).plot_xlabel());
     hold on;
     fplot(green_line, xlim, 'Color', 'g');
+    % plot_ylabel also modifies the y-axis so it looks good. That's why the
+    % vertical purple lines are plotted after it is called.
     ylabel(combs(i).plot_ylabel());
+    combs(i).plot_vlines();
     title(combs(i).plot_title());
     combs(i).saveall();
     combs(i).printTextDataToFile();

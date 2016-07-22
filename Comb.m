@@ -146,10 +146,12 @@ classdef Comb
         function str = plot_xlabel(o)
             str = ['Days since ', o.init_date.date2str()];
             % Set the x-axis ticks to be integers only.
-            set(gca, 'XTick', 0:1:o.num_days-1);
+            % Give it easy-to-read spacings between ticks
+            space = round(o.num_days, -1)/10;
+            set(gca, 'XTick', 0:space:o.num_days-1);
             % Pad the x-axis so that no data points appear on the vertical
             % axes
-            pad = o.num_days/10;
+            pad = o.num_days/100;
             xlim([(0-pad) ((o.num_days-1)+pad)]);
         end
         % plot_xlabel: returns a string that should be used for the 
