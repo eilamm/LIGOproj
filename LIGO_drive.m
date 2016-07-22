@@ -14,22 +14,22 @@ debug = input('Enter "db" for debug mode; enter anything to continue normally: '
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([8, 7, 2016]);
-END_DATE = Date([11, 7, 2016]);
+START_DATE = Date([14, 9, 2015]);
+END_DATE = Date([22, 1, 2016]);
 
 disp(['Start date: ', START_DATE.date2str()]);
 disp(['End date: ', END_DATE.date2str()]);
 
 % Until the constructor is made better.
 % lower bound, upper bound, offset, harmonic, ID
-% c1 = Comb([0, 150, 0, 16, 1]);
-% c2 = Comb([0, 4000, 0, 16, 2]);
-% c3 = Comb([150, 4000, 0, 16, 3]);
+c1 = Comb([0, 150, 0, 16, 1]);
+c2 = Comb([0, 4000, 0, 16, 2]);
+c3 = Comb([150, 4000, 0, 16, 3]);
 % 
-% c4 = Comb([0, 150, 0, 1, 4]);
-% c5 = Comb([0, 4000, 0, 1, 5]);
-% c6 = Comb([150, 4000, 0, 1, 6]);
-% 
+c4 = Comb([0, 150, 0, 1, 4]);
+c5 = Comb([0, 4000, 0, 1, 5]);
+c6 = Comb([150, 4000, 0, 1, 6]);
+
 % c7 = Comb([0, 150, 0.25, 1, 7]);
 % c8 = Comb([0, 4000, 0.25, 1, 8]);
 % c9 = Comb([150, 4000, 0.25, 1, 9]);
@@ -46,14 +46,15 @@ disp(['End date: ', END_DATE.date2str()]);
 % 
 % c17 = Comb([0, 4000, 0, 2, 17]);
 
-c18 = Comb([9, 175, 1.999951/2.0, 1.999951, 18]);
+% c18 = Comb([9, 175, 1.999951/2.0, 1.999951, 18]);
 % c19 = Comb([0, 4000, 12.47285, 12.28695, 19]);
 % c20 = Comb([2000, 3000, 58.3332, 3.57381, 20]);
 
 
 % Note that these are copies of c1 and c2.
 % combs = [c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c11; c12; c13; c14; c15; c16; c17; c18; c19; c20];
-combs = [c18];
+% combs = [c18];
+combs = [c1; c2; c3; c4; c5; c6];
 
 for x = 1:1:size(combs)
     combs(x).init_date = START_DATE;
