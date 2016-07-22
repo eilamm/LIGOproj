@@ -3,10 +3,9 @@
 % Reads in the frequency data for a given day, month, year and frequency
 % range (give the first frequency in the range). Returns the data in vector data
 function [data, file_exists, folder_path] = read_data_new(day, month, year, first_val)
-% UNCOMMENT OUT THIS PATH TO RETURN TO NORMAL CHANNEL - JULY 22, 2016
-%     path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
-%            'H1_DUAL_ARM_HANN/'];
-    path = '/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_PEM/H1_PEM/';
+    path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
+           'H1_DUAL_ARM_HANN/'];
+       
     y = num2str(year);
     if (month < 10)
         m = ['0', num2str(month)];
@@ -19,12 +18,12 @@ function [data, file_exists, folder_path] = read_data_new(day, month, year, firs
         d = num2str(day);
     end
     
-    temp = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_PEM/H1_PEM/',...
-           'fscans_', y, '_', m, '_', d, '*'];
+    temp = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
+           'H1_DUAL_ARM_HANN/fscans_', y, '_', m, '_', d, '*'];
     folder = dir(temp);
     path = [path, folder.name];
         
-    path = [path, '/H1_PEM-EX_MAG_VEA_FLOOR_X_DQ/'];
+    path = [path, '/H1_CAL-DELTAL_EXTERNAL_DQ/'];
     temp = [path, 'spec_', num2str(first_val), '.00_', ...
             num2str(first_val + 100), '.00_*.txt'];
         
