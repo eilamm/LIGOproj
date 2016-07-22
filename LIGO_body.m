@@ -72,19 +72,29 @@ function c = LIGO_body(c)
             else
 %                 n_err = n_err + 1;
 %                 error_arr = [error_arr;error_msg(d, m, y, freq)];
+                fileLowLimit = freq;
+                fileUpLimit = freq + 100;
                 for j = 1:1:size(c)
-                    c(j).total = -1;
+                    combLastBin = c(j).bins(c(j).num_freq, 1);
+                    combFirstBin = c(j).bins(1, 1);
+                    
+                    % If this file does not contain any of the comb's teeth
+                    if (fileLowLimit > combLastBin || ...
+                            fileUpLimit < combFirstBin) 
+                        % Do nothing
+                    % Else if this file does contain some teeth of the comb
+                    else
+                        % Disregard its data for the data by setting its 
+                        % day's total to NaN
+                        c(j).total = NaN;
+                    end
                 end
-                break;
+                
                 % File doesn't exist, skip inner loop
             end
         end
         for k = 1:1:size(c)
-            if (c(k).total == -1)
-                avg = NaN;
-            else
-                avg = c(k).total/c(k).num_freq;
-            end
+            avg = c(k).total/c(k).num_freq;
             c(k).day_avgs(i) = avg;
 
             avg_of_square = c(k).square/c(k).num_freq;
