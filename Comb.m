@@ -147,7 +147,7 @@ classdef Comb
             str = ['Days since ', o.init_date.date2str()];
             % Set the x-axis ticks to be integers only.
             % Give it easy-to-read spacings between ticks
-            space = round(o.num_days, -1)/10;
+            space = round_n(o.num_days, 1)/10;
             set(gca, 'XTick', 0:space:o.num_days-1);
             % Pad the x-axis so that no data points appear on the vertical
             % axes
