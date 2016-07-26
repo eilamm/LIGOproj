@@ -15,7 +15,7 @@ debug = input('Enter "db" for debug mode; enter anything to continue normally: '
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
 START_DATE = Date([1, 1, 2016]);
-END_DATE = Date([11, 1, 2016]);
+END_DATE = Date([20, 1, 2016]);
 
 disp(['Start date: ', START_DATE.date2str()]);
 disp(['End date: ', END_DATE.date2str()]);
