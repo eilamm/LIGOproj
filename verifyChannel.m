@@ -10,7 +10,8 @@ function exists = verifyChannel(CHANNEL)
         exists = 0;
     else
         directory = [path, 'fscans_2016_07_09_06_00_01_PDT_Sat/', CHANNEL];
-        if (exist(directory, 'dir') == 1)
+        % Exist returns a 7 for a folder
+        if (exist(directory, 'dir') == 7)
             exists = 1;
         else
             exists = 0;
