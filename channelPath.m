@@ -10,6 +10,6 @@ function path = channelPath(CHANNEL)
     elseif (isempty(strfind(CHANNEL, 'PEM')) == 0)
         path = '/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_PEM/H1_PEM/';
     else 
-        path = NaN;
+        path = '';
     end
 end

@@ -5,7 +5,7 @@
 
 function exists = verifyChannel(CHANNEL)
     path = channelPath(CHANNEL);
-    if (ISNAN(path))
+    if (isempty(path))
         disp('Program only recognizes PEM or DELTAL channels.');
         exists = 0;
     else
