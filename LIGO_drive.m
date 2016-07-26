@@ -12,8 +12,8 @@ close all;
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([14, 9, 2015]);
-END_DATE = Date([22, 1, 2016]);
+START_DATE = Date([1, 7, 2016]);
+END_DATE = Date([26, 7, 2016]);
 % You may hard-code the CHANNEL name here instead of entering it at the
 % beginning of the program's execution. Capitalization does not matter,
 % lower-case will be converted to upper-case.
