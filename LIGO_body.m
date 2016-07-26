@@ -5,31 +5,8 @@
 
 % Calculate all the frequencies we want to look at. 
 % Argument c is the combs array
-function c = LIGO_body(c, channel, chanPath)
-    % Calculate all the bins to be looked at
-%     bins = calc_bins(HARMONIC, offset, START_FREQ, END_FREQ);
-%     num_freq = length(bins);
-    % start is a counter used to know which value of bins we are on.
-    % Increases with each iteration of the inner loop. Important to reset
-    % to 1 after a day is complete (each iteration of the outer loop)
-%     start = 1;
-    
-    % Number of days we are inspecting. Used to preallocate day_averages
-    
-    % Will contain the averaged normalized power for each day.
-%     day_averages = zeros(num_days, 1);
-%     day_errors = zeros(num_days, 1);
-    
-    % Initialize the total value (to be averaged later) to zero.
-%     total = 0;
-    % Initialize the square value (for std. dev) to zero
-%     square = 0;
-    
-    error_arr = [];
-    n_err = 0;
-    
-%     fileA = START_FREQ - mod(START_FREQ, 100);
-%     fileZ = END_FREQ - 100;
+function c = LIGO_body(c, channel)
+    chanPath = channelPath(channel);
     fileA = 0;
     fileZ = 4000 - 100;
     % Enter outer loop. Goes through each file for a day.

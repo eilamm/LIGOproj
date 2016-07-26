@@ -85,7 +85,7 @@ if (strcmp(debug, 'db') == 1)
     disp('Debug mode'); 
     combs = LIGO_body_debug(combs);
 else
-    combs = LIGO_body(combs, CHANNEL, path);
+    combs = LIGO_body(combs, CHANNEL);
 end
 
 % plot(1:1:rough_size, day_averages, '*');
