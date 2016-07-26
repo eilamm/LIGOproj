@@ -14,11 +14,13 @@ close all;
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
 START_DATE = Date([14, 9, 2015]);
 END_DATE = Date([22, 1, 2016]);
-% You may hard-code the CHANNEL name here instead of entering it at the
-% beginning of the program's execution. Capitalization does not matter,
-% lower-case will be converted to upper-case.
 CHANNEL = 'H1_CAL-DELTAL_EXTERNAL_DQ';
-selectChannel(CHANNEL);
+
+disp(['Current channel: ', CHANNEL]);
+channel_in = input('Select different channel? (y for yes, anything else for no): ', 's');
+if (strcmp(channel_in, 'y') == 1)
+    CHANNEL = input('New channel: ', 's');
+end
 
 debug = input('Enter "db" for debug mode; enter anything to continue normally: ', 's');
 
@@ -85,7 +87,7 @@ if (strcmp(debug, 'db') == 1)
     disp('Debug mode'); 
     combs = LIGO_body_debug(combs);
 else
-    combs = LIGO_body(combs, CHANNEL, path);
+    combs = LIGO_body(combs);
 end
 
 % plot(1:1:rough_size, day_averages, '*');

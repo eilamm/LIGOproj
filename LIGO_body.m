@@ -5,7 +5,7 @@
 
 % Calculate all the frequencies we want to look at. 
 % Argument c is the combs array
-function c = LIGO_body(c)
+function c = LIGO_body(c, channel, chanPath)
     % Calculate all the bins to be looked at
 %     bins = calc_bins(HARMONIC, offset, START_FREQ, END_FREQ);
 %     num_freq = length(bins);
@@ -40,7 +40,7 @@ function c = LIGO_body(c)
         y = date.year;
         % Enter middle loop. Goes through frequency range per day.
         for freq = fileA:100:fileZ
-            [data, file_exists, path] = read_data_new(d, m, y, freq);
+            [data, file_exists, path] = read_data_new(d, m, y, freq, channel, chanPath);
             if (file_exists == 1)
                 
                 

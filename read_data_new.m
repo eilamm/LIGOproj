@@ -2,9 +2,10 @@
 % February 21, 2016
 % Reads in the frequency data for a given day, month, year and frequency
 % range (give the first frequency in the range). Returns the data in vector data
-function [data, file_exists, folder_path] = read_data_new(day, month, year, first_val)
-    path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
-           'H1_DUAL_ARM_HANN/'];
+function [data, file_exists, folder_path] = read_data_new(day, month, ...
+                                        year, first_val, chan, path)
+%     path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
+%            'H1_DUAL_ARM_HANN/'];
        
     y = num2str(year);
     if (month < 10)
@@ -18,12 +19,11 @@ function [data, file_exists, folder_path] = read_data_new(day, month, year, firs
         d = num2str(day);
     end
     
-    temp = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
-           'H1_DUAL_ARM_HANN/fscans_', y, '_', m, '_', d, '*'];
+    temp = [path, '/fscans_', y, '_', m, '_', d, '*'];
     folder = dir(temp);
     path = [path, folder.name];
         
-    path = [path, '/H1_CAL-DELTAL_EXTERNAL_DQ/'];
+    path = [path, '/', chan, '/'];
     temp = [path, 'spec_', num2str(first_val), '.00_', ...
             num2str(first_val + 100), '.00_*.txt'];
         
