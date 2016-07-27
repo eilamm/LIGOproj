@@ -84,7 +84,7 @@ disp(['Beginning time is ', datestr(now)]);
 
 if (strcmp(debug, 'db') == 1)
     disp('Debug mode'); 
-    combs = LIGO_body_debug(combs);
+    combs = LIGO_body_debug(combs, CHANNEL);
 else
     combs = LIGO_body(combs, CHANNEL);
 end

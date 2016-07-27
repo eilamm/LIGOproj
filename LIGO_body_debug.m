@@ -6,7 +6,8 @@
 
 % Calculate all the frequencies we want to look at. 
 % Argument c is the combs array
-function c = LIGO_body_debug(c)
+function c = LIGO_body_debug(c, channel)
+    chanPath = channelPath(channel)
     fileA = 0;
     fileZ = 4000 - 100;
     % Enter outer loop. Goes through each file for a day.
@@ -17,7 +18,7 @@ function c = LIGO_body_debug(c)
         y = date.year;
         % Enter middle loop. Goes through frequency range per day.
         for freq = fileA:100:fileZ
-            [data, file_exists, path] = read_data_new(d, m, y, freq);
+            [data, file_exists, path] = read_data_new(d, m, y, freq, channel, chanPath);
             if (file_exists == 1)
                 % Third loop. Iterates through all of the Comb objects
                 % contained in the combs container.
