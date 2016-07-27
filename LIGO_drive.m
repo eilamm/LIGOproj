@@ -21,8 +21,8 @@ CHANNEL = 'H1_CAL-DELTAL_EXTERNAL_DQ';
 % CHANNEL = 'H1_PEM-EX_MAG_VEA_FLOOR_X_DQ';
 CHANNEL = selectChannel(CHANNEL);
 
-debug = input('Enter "db" for debug mode; enter anything to continue normally: ', 's');
-
+selfCheck = input('Run in self-check mode? (y for yes, anything else for no): ', 's');
+disp('SELF CHECK MODE');
 
 
 disp(['Start date: ', START_DATE.date2str()]);
@@ -82,11 +82,11 @@ minutes = num_days/30*5;
 disp(['Working. This will take around ', num2str(minutes), ' minutes.']);
 disp(['Beginning time is ', datestr(now)]);
 
-if (strcmp(debug, 'db') == 1)
-    disp('Debug mode'); 
-    combs = LIGO_body_debug(combs, CHANNEL);
+% Self-check or not
+if (strcmp(selfCheck, 'y') == 1) 
+    combs = LIGO_body(combs, CHANNEL, 1);
 else
-    combs = LIGO_body(combs, CHANNEL);
+    combs = LIGO_body(combs, CHANNEL, 0);
 end
 
 for i = 1:1:size(combs)

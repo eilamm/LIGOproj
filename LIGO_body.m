@@ -5,7 +5,7 @@
 
 % Calculate all the frequencies we want to look at. 
 % Argument c is the combs array
-function c = LIGO_body(c, channel)
+function c = LIGO_body(c, channel, selfCheck)
     chanPath = channelPath(channel);
     fileA = 0;
     fileZ = 4000 - 100;
@@ -32,11 +32,17 @@ function c = LIGO_body(c, channel)
                     % the specific 100 Hz frequency range.
                     while ( (start <= length(c(j).bins)) && ...
                             (c(j).bins(start, 1) < freq + 100) )
+                        % This if-statement only runs in self-check mode
+                        if (selfCheck == 1)
+                            selfCheck_binsValid(data, c(j), start);
+                            c(j).DEBUG_lastf = selfCheck_binsIncreasing( ...
+                                c(j).bins(start, 1), c(j).DEBUG_lastf, ...
+                                c(j).ID, start);
+                        end
                         % Use the next value of the bins (second column, which is
                         % the line number in the file) to index into the data
                         % matrix. Take the value from the second column, which is
                         % the normal power.
-        %                 data(bins(start, 2), :)
                         value = data(c(j).bins(start, 2), 2);
                         total = total + value;
                         square = square + value^2;
