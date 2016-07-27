@@ -378,8 +378,19 @@ classdef Comb
         % txt_filename: Easy to use method to return the name of the text
         % file for the comb as a string
         function s = txt_filename(o)
-            s = ['Avg_norm_pwr_for_', 'harmonic_', num2str(o.harm), ...
-                    'Hz_offset_', num2str(o.offset), 'Hz_range_', ...
+            if (isint(o.harm))
+                harmo = num2str(o.harm);
+            else
+                harmo = sprintf('%f', o.harm);
+            end
+            if (isint(o.offset))
+                off = num2str(o.offset);
+            else
+                off = sprintf('%f', o.offset);
+            end
+            
+            s = ['Avg_norm_pwr_for_', 'harmonic_', harmo, ...
+                    'Hz_offset_', off, 'Hz_range_', ...
                     num2str(o.low_b), '_to_', num2str(o.up_b), ...
                     'Hz_dates_', o.init_date.date2str_nospace(), ...
                     '_to_', o.end_date.date2str_nospace(), '.txt'];
