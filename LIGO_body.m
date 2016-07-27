@@ -88,6 +88,9 @@ function c = LIGO_body(c, channel, selfCheck)
             c(k).total = 0;
             c(k).square = 0;
             c(k).start = 1;
+            if (selfCheck == 1)
+                c(k).DEBUG_lastf = -1;
+            end
         end
         date = date.next_day();
     end
