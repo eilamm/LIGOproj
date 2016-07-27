@@ -7,7 +7,7 @@
 % Calculate all the frequencies we want to look at. 
 % Argument c is the combs array
 function c = LIGO_body_debug(c, channel)
-    chanPath = channelPath(channel)
+    chanPath = channelPath(channel);
     fileA = 0;
     fileZ = 4000 - 100;
     % Enter outer loop. Goes through each file for a day.
