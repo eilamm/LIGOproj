@@ -22,7 +22,6 @@ CHANNEL = 'H1_CAL-DELTAL_EXTERNAL_DQ';
 CHANNEL = selectChannel(CHANNEL);
 
 selfCheck = input('Run in self-check mode? (y for yes, anything else for no): ', 's');
-disp('SELF CHECK MODE');
 
 
 disp(['Start date: ', START_DATE.date2str()]);
@@ -84,6 +83,7 @@ disp(['Beginning time is ', datestr(now)]);
 
 % Self-check or not
 if (strcmp(selfCheck, 'y') == 1) 
+    disp('SELF CHECK MODE');
     combs = LIGO_body(combs, CHANNEL, 1);
 else
     combs = LIGO_body(combs, CHANNEL, 0);
