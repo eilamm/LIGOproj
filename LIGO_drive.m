@@ -18,7 +18,7 @@ END_DATE = Date([26, 7, 2016]);
 % beginning of the program's execution. Capitalization does not matter,
 % lower-case will be converted to upper-case.
 CHANNEL = 'H1_CAL-DELTAL_EXTERNAL_DQ';
-selectChannel(CHANNEL);
+CHANNEL = selectChannel(CHANNEL);
 
 debug = input('Enter "db" for debug mode; enter anything to continue normally: ', 's');
 
@@ -88,7 +88,6 @@ else
     combs = LIGO_body(combs, CHANNEL);
 end
 
-% plot(1:1:rough_size, day_averages, '*');
 for i = 1:1:size(combs)
     num_days = combs(i).num_days;
     day_averages = combs(i).day_avgs;
