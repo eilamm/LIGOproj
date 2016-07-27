@@ -33,7 +33,7 @@ function c = LIGO_body_debug(c, channel)
                             (c(j).bins(start, 1) < freq + 100) )
                         
                         % DEBUG PART BELOW
-                        selfCheck_binsValid(data, comb, start);
+                        selfCheck_binsValid(data, c(j), start);
 %                         if (data(c(j).bins(start, 2), 1) ~= c(j).bins(start, 1))
 %                             s = sprintf('%s%i%s%i%s%d%s%d', 'Unequal for Comb ', c(j).ID, ...
 %                                 ': index of ', start, ', comb frequency requested is ', c(j).bins(start, 1), ...
