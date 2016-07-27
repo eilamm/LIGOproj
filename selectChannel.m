@@ -11,6 +11,8 @@ function CHANNEL = selectChannel(CHANNEL)
     channel_in = input('Select different channel? (y for yes, anything else for no): ', 's');
     if (strcmp(channel_in, 'y') == 1)
         CHANNEL = input('New channel: ', 's');
+    else
+        disp('Using hard-coded channel');
     end
     CHANNEL = upper(CHANNEL);
     

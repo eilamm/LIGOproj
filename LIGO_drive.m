@@ -12,12 +12,13 @@ close all;
 
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([1, 7, 2016]);
-END_DATE = Date([26, 7, 2016]);
+START_DATE = Date([26, 2, 2015]);
+END_DATE = Date([5, 7, 2016]);
 % You may hard-code the CHANNEL name here instead of entering it at the
 % beginning of the program's execution. Capitalization does not matter,
 % lower-case will be converted to upper-case.
-CHANNEL = 'H1_CAL-DELTAL_EXTERNAL_DQ';
+% CHANNEL = 'H1_CAL-DELTAL_EXTERNAL_DQ';
+CHANNEL = 'H1_PEM-EX_MAG_VEA_FLOOR_X_DQ';
 CHANNEL = selectChannel(CHANNEL);
 
 debug = input('Enter "db" for debug mode; enter anything to continue normally: ', 's');
