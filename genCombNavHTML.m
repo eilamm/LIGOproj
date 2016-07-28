@@ -51,6 +51,7 @@ function genCombNavHTML(path, channel)
 
         
     filename = [path, 'combNav.php'];
+    disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, text);
     fclose(fileID);
