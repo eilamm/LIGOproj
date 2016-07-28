@@ -35,7 +35,7 @@ disp(['End date: ', END_DATE.date2str()]);
 
 %%%%%%%%%%%%%%%%%%%%%%%%% CHANGE COMBS IN getCombs.m %%%%%%%%%%%%%%%%%%%%%
 combs = getCombs();
-combs = initCombs(combs);
+combs = initCombs(combs, START_DATE, END_DATE);
 % combs(2) = combs(2).T2init(combs(1), 300);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
