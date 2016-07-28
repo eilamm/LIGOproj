@@ -13,7 +13,7 @@ function newChannel(channel)
         disp(['Creating directory', path]);
         mkdir(path);
         genCombNavHTML(path, channel);
-        genCombNavCSS(path, channel);
+        genCombNavCSS(path);
         disp('New channel setup complete.');
     end
 end
