@@ -345,6 +345,7 @@ classdef Comb
             
             filename = ['/home/', o.user, '/public_html/Combs/', ...
                         o.combStrFile(), '/', o.txt_filename()];
+            disp(['Saving file ', filename]);
             fileID = fopen(filename, 'w');
             fprintf(fileID, '%s', out);
             fclose(fileID);
