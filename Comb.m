@@ -204,7 +204,7 @@ classdef Comb
         % folder and creates an HTML script to write a webpage displaying
         % the plot.
         function saveall(o, channel)
-            path = ['/home/', o.user, '/public_html/Combs/', channel, ...
+            path = ['/home/', o.user, '/public_html/CombInv/Channels/', channel, ...
                     '/', o.combStrFile()];
             if (exist(path, 'dir') == 0)
                 disp(['Creating directory ', path]);
@@ -301,7 +301,7 @@ classdef Comb
             ylabel('Teeth (Exist if value is 1)');
             
             
-            path = ['/home/', o.user,'/public_html/Combs/', channel, ...
+            path = ['/home/', o.user,'/public_html/CombInv/Channels/', channel, ...
                     '/', o.combStrFile()];
             filename = [path, '/comb.png'];
             disp(['Saving file ', filename]);
@@ -343,7 +343,7 @@ classdef Comb
             formatSpec = '%s\n%s\n%s';
             out = sprintf(formatSpec, title, header, text);
             
-            filename = ['/home/', o.user, '/public_html/Combs/', ...
+            filename = ['/home/', o.user, '/public_html/CombInv/Channels/', ...
                         channel, '/', o.combStrFile(), '/', ...
                         o.txt_filename()];
             disp(['Saving file ', filename]);

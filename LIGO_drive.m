@@ -10,6 +10,8 @@
 clear variables; 
 close all;
 
+firstTimeSetup();
+
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
 START_DATE = Date([1, 1, 2016]);
@@ -90,6 +92,8 @@ if (strcmp(selfCheck, 'y') == 1)
 else
     combs = LIGO_body(combs, CHANNEL, 0);
 end
+
+newChannel(CHANNEL);
 
 for i = 1:1:size(combs)
     num_days = combs(i).num_days;
