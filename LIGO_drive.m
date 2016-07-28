@@ -12,9 +12,10 @@ close all;
 
 firstTimeSetup();
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHANGE DATES AND CHANNEL %%%%%%%%%%%%%%%%%%%%
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([26, 2, 2015]);
+START_DATE = Date([4, 7, 2016]);
 END_DATE = Date([5, 7, 2016]);
 % You may hard-code the CHANNEL name here instead of entering it at the
 % beginning of the program's execution. Capitalization does not matter,
@@ -23,59 +24,23 @@ END_DATE = Date([5, 7, 2016]);
 CHANNEL = 'H1_PEM-EX_MAG_VEA_FLOOR_X_DQ';
 CHANNEL = selectChannel(CHANNEL);
 
-selfCheck = input('Run in self-check mode? (y for yes, anything else for no): ', 's');
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+selfCheck = input('Run in self-check mode? (y for yes, anything else for no): ', 's');
 
 disp(['Start date: ', START_DATE.date2str()]);
 disp(['End date: ', END_DATE.date2str()]);
 
-% Until the constructor is made better.
-% lower bound, upper bound, offset, harmonic, ID
-% c1 = Comb([0, 150, 0, 16, 1]);
-% c2 = Comb([0, 4000, 0, 16, 2]);
-% c3 = Comb([150, 4000, 0, 16, 3]);
-% 
-% c4 = Comb([0, 150, 0, 1, 4]);
-% c5 = Comb([0, 4000, 0, 1, 5]);
-% c6 = Comb([150, 4000, 0, 1, 6]);
 
-% c7 = Comb([0, 150, 0.25, 1, 7]);
-% c8 = Comb([0, 4000, 0.25, 1, 8]);
-% c9 = Comb([150, 4000, 0.25, 1, 9]);
-% 
-% c10 = Comb([0, 150, 0.50, 1, 10]);
-% c11 = Comb([0, 4000, 0.50, 1, 11]);
-% c12 = Comb([150, 4000, 0.50, 1, 12]);
-% 
-% c13 = Comb([0, 150, 0.75, 1, 13]);
-% c14 = Comb([0, 4000, 0.75, 1, 14]);
-% c15 = Comb([150, 4000, 0.75, 1, 15]);
-% 
-% c16 = Comb([10, 110, 1, 2, 16]);
-% 
-% c17 = Comb([0, 4000, 0, 2, 17]);
 
-c18 = Comb([9, 175, 1.999951/2.0, 1.999951, 18]);
-% c19 = Comb([0, 4000, 12.47285, 12.28695, 19]);
-% c20 = Comb([2000, 3000, 58.3332, 3.57381, 20]);
-
-% c21 = Comb([9, 175, 2, 1.999951, 18]);
-
-% Note that these are copies of c1 and c2.
-% combs = [c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c11; c12; c13; c14; c15; c16; c17; c18; c19; c20];
-combs = [c18];
-% combs = [c1; c2; c3; c4; c5; c6];
-% combs = [c21];
-
-for x = 1:1:size(combs)
-    combs(x).init_date = START_DATE;
-    combs(x).end_date = END_DATE;
-    combs(x) = combs(x).init();
-    s = sprintf('%s%d%s', 'Comb ', combs(x).ID, ' is good.');
-    disp(s);
-end
-
+%%%%%%%%%%%%%%%%%%%%%%%%% CHANGE COMBS IN getCombs.m %%%%%%%%%%%%%%%%%%%%%
+combs = getCombs();
+combs = initCombs(combs);
 % combs(2) = combs(2).T2init(combs(1), 300);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 % Preallocate memory for the date array
 % A difference in months means a full month. The rest of rough_size is made
 % up by the days we go into the last month.
@@ -85,6 +50,7 @@ minutes = num_days/30*5;
 disp(['Working. This will take around ', num2str(minutes), ' minutes.']);
 disp(['Beginning time is ', datestr(now)]);
 
+%%%%%%%%%%%%%%%%%%%%%%%% LIGO_BODY (MAIN PROGRAM) %%%%%%%%%%%%%%%%%%%%%%%%
 % Self-check or not
 if (strcmp(selfCheck, 'y') == 1) 
     disp('SELF CHECK MODE');
@@ -93,7 +59,11 @@ else
     combs = LIGO_body(combs, CHANNEL, 0);
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 newChannel(CHANNEL);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% PLOTS AND SAVING FILES %%%%%%%%%%%%%%%%%%%%%%%
 
 for i = 1:1:size(combs)
     num_days = combs(i).num_days;
@@ -122,6 +92,8 @@ for i = 1:1:size(combs)
     % vertical purple lines are plotted after it is called.
     ylabel(combs(i).plot_ylabel());
     combs(i).plot_vlines();
+    set(gcf, 'PaperUnits', 'inches');
+    set(gcf, 'PaperPosition', [0 0 6 6]);
     title(combs(i).plot_title());
     combs(i).saveall(CHANNEL);
     
@@ -130,5 +102,7 @@ for i = 1:1:size(combs)
     disp(' ');
     disp(' ');
 end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 disp(['Ending time is ', datestr(now)]);
 disp('DONE');
