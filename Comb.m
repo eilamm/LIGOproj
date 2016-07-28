@@ -25,12 +25,14 @@ classdef Comb
         square = 0;
         type = 1;        % Type of comb. Can be 1 or 2.
         sep = 0;         % For type 2 combs, the separation between combs
+        user = '';
         DEBUG_lastf = -1;
     end
     
     methods
         % constructor
         function obj = Comb(c)
+            obj.user = getenv('USER');
             if (nargin > 0)
                 if isa(c, 'Comb')
                     obj.init_date = c.init_date;
@@ -202,7 +204,7 @@ classdef Comb
         % folder and creates an HTML script to write a webpage displaying
         % the plot.
         function saveall(o)
-            path = ['/home/eilam.morag/public_html/Combs/', ...
+            path = ['/home/', o.user, '/public_html/Combs/', ...
                     o.combStrFile()];
             if (exist(path, 'dir') == 0)
                 disp(['Creating directory ', path]);
@@ -298,7 +300,7 @@ classdef Comb
             ylabel('Teeth (Exist if value is 1)');
             
             
-            path = ['/home/eilam.morag/public_html/Combs/', ...
+            path = ['/home/', o.user,'/public_html/Combs/', ...
                     o.combStrFile()];
             filename = [path, '/comb.png'];
             disp(['Saving file ', filename]);
@@ -341,7 +343,7 @@ classdef Comb
             formatSpec = '%s\n%s\n%s';
             out = sprintf(formatSpec, title, header, text);
             
-            filename = ['/home/eilam.morag/public_html/Combs/', ...
+            filename = ['/home/', o.user, '/public_html/Combs/', ...
                         o.combStrFile(), '/', o.txt_filename()];
             fileID = fopen(filename, 'w');
             fprintf(fileID, '%s', out);
