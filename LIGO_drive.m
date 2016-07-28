@@ -119,8 +119,7 @@ for i = 1:1:size(combs)
     ylabel(combs(i).plot_ylabel());
     combs(i).plot_vlines();
     title(combs(i).plot_title());
-    combs(i).saveall();
-    combs(i).printTextDataToFile();
+    combs(i).saveall(CHANNEL);
     
     temp = START_DATE;
     

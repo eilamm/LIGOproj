@@ -3,7 +3,7 @@
 % Purpose: this function will generate an HTML script and thus create a
 % webpage for each comb type. Input argument c should be a comb.
 
-function genHTML(c)
+function genHTML(c, channel)
     if (isa(c, 'Comb') == 0)
         error('genHTML only accepts Comb types.');
     end
@@ -73,7 +73,7 @@ function genHTML(c)
             '</script>', ...
             '</body>\n', ...
             '</html>' ];
-    filename = ['/home/', c.user, '/public_html/Combs/', ...
+    filename = ['/home/', c.user, '/public_html/Combs/', channel, '/', ...
                 c.combStrFile(), '/', c.combStrFile(), '.php'];
     fileID = fopen(filename, 'w');
     fprintf(fileID, text);

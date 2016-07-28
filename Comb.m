@@ -203,9 +203,9 @@ classdef Comb
         % comb. If none exists, creates one. Then saves the plot to the
         % folder and creates an HTML script to write a webpage displaying
         % the plot.
-        function saveall(o)
-            path = ['/home/', o.user, '/public_html/Combs/', ...
-                    o.combStrFile()];
+        function saveall(o, channel)
+            path = ['/home/', o.user, '/public_html/Combs/', channel, ...
+                    '/', o.combStrFile()];
             if (exist(path, 'dir') == 0)
                 disp(['Creating directory ', path]);
                 mkdir(path);
@@ -213,13 +213,14 @@ classdef Comb
             
             visual_comb = [path, '/comb.png'];
             if (exist(visual_comb, 'file') == 0)
-                o.showComb();
+                o.showComb(channel);
             end
             
             filename = [path, '/', o.plot_filename()];
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
-            genHTML(o);
+            genHTML(o, channel);
+            o.printTextDataToFile(channel);
         end
         % printCombFile: returns as a string the important comb properties in a filename
         % safe way (with underscores)
@@ -280,7 +281,7 @@ classdef Comb
         % showComb: Saves a figure visually showing the comb structure as 
         % 'comb.png'. Also, saves a text file listing the teeth of the 
         % comb as 'comb.txt'.
-        function showComb(o)
+        function showComb(o, channel)
             % Visual representation of comb (comb.png)
             figure;
             y = ones(o.num_freq,1);
@@ -300,8 +301,8 @@ classdef Comb
             ylabel('Teeth (Exist if value is 1)');
             
             
-            path = ['/home/', o.user,'/public_html/Combs/', ...
-                    o.combStrFile()];
+            path = ['/home/', o.user,'/public_html/Combs/', channel, ...
+                    '/', o.combStrFile()];
             filename = [path, '/comb.png'];
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
@@ -324,8 +325,7 @@ classdef Comb
         
         % printTextDataToFile: Prints out the text version of the data to a
         % file
-        % YOU WERE RIGHT HERE -- JUNE 28 1:45 PM
-        function printTextDataToFile(o)
+        function printTextDataToFile(o, channel)
             title = ['Data for Comb: ', o.strProp()];
             header = sprintf('Day#\tDate\t\tAvg\tBlueErrorBar\tRedErrorBar');
             text = '';
@@ -344,7 +344,8 @@ classdef Comb
             out = sprintf(formatSpec, title, header, text);
             
             filename = ['/home/', o.user, '/public_html/Combs/', ...
-                        o.combStrFile(), '/', o.txt_filename()];
+                        channel, '/', o.combStrFile(), '/', ...
+                        o.txt_filename()];
             disp(['Saving file ', filename]);
             fileID = fopen(filename, 'w');
             fprintf(fileID, '%s', out);
