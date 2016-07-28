@@ -93,7 +93,7 @@ for i = 1:1:size(combs)
     ylabel(combs(i).plot_ylabel());
     combs(i).plot_vlines();
     set(gcf, 'PaperUnits', 'points');
-    set(gcf, 'PaperPosition', [0 0 667 500]);
+    set(gcf, 'PaperPosition', [0 0 707 530]);
     title(combs(i).plot_title());
     combs(i).saveall(CHANNEL);
     
