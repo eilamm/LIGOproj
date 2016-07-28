@@ -10,7 +10,7 @@ function newChannel(channel)
     path = ['/home/', uid, '/public_html/CombInv/Channels/', channel, '/'];
     if (exist(path, 'dir') == 0)
         disp(['New channel: ', channel]);
-        disp(['Creating directory', path]);
+        disp(['Creating directory ', path]);
         mkdir(path);
         genCombNavHTML(path, channel);
         genCombNavCSS(path);
