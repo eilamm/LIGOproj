@@ -92,8 +92,8 @@ for i = 1:1:size(combs)
     % vertical purple lines are plotted after it is called.
     ylabel(combs(i).plot_ylabel());
     combs(i).plot_vlines();
-    set(gcf, 'PaperUnits', 'inches');
-    set(gcf, 'PaperPosition', [0 0 6 6]);
+    set(gcf, 'PaperUnits', 'points');
+    set(gcf, 'PaperPosition', [0 0 667 500]);
     title(combs(i).plot_title());
     combs(i).saveall(CHANNEL);
     
