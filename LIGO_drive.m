@@ -94,6 +94,7 @@ for i = 1:1:size(combs)
     combs(i).plot_vlines();
     set(gcf, 'PaperUnits', 'points');
     set(gcf, 'PaperPosition', [0 0 707 530]);
+    set(gca, 'YTickLabel', get(gca, 'YTick'));
     title(combs(i).plot_title());
     combs(i).saveall(CHANNEL);
     
