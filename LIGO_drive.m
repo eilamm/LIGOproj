@@ -15,7 +15,7 @@ firstTimeSetup();
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% CHANGE DATES AND CHANNEL %%%%%%%%%%%%%%%%%%%%
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([4, 7, 2016]);
+START_DATE = Date([26, 2, 2015]);
 END_DATE = Date([5, 7, 2016]);
 % You may hard-code the CHANNEL name here instead of entering it at the
 % beginning of the program's execution. Capitalization does not matter,
