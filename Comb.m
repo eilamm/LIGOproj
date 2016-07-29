@@ -227,10 +227,10 @@ classdef Comb
         function plotCombData(o)
             figure;
     
-            errorbar(0:1:o.num_days-1, o.day_avgs, o.day_errors, 'o');
+            errorbar(0:1:o.num_days, o.day_avgs, o.day_errors, 'o');
             green_line = @(t) 1;
             hold on;
-            errorbar(0:1:o.num_days-1, o.day_avgs, o.day_sft_errs, 'ro');
+            errorbar(0:1:o.num_days, o.day_avgs, o.day_sft_errs, 'ro');
 
             % plot_xlabel also modifies the x-axis so it looks good. That's why the
             % green line is plotted after it is called.
