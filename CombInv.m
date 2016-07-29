@@ -75,6 +75,7 @@ for i = 1:1:size(combs)
     END_FREQ = combs(i).up_b;
     
     figure;
+    combs(i) = combs(i).outlierControl();
     errorbar(0:1:num_days-1, day_averages, day_errors, 'o');
     green_line = @(t) 1;
     hold on;
@@ -88,6 +89,9 @@ for i = 1:1:size(combs)
     % plot_ylabel also modifies the y-axis so it looks good. That's why the
     % vertical purple lines are plotted after it is called.
     ylabel(combs(i).plot_ylabel());
+    
+    combs(i).plot_outliers();
+    
     combs(i).plot_vlines();
     set(gcf, 'PaperUnits', 'points');
     set(gcf, 'PaperPosition', [0 0 707 530]);

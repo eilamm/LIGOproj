@@ -26,6 +26,7 @@ classdef Comb
         type = 1;        % Type of comb. Can be 1 or 2.
         sep = 0;         % For type 2 combs, the separation between combs
         user = '';
+        outliers = [];
         DEBUG_lastf = -1;
     end
     
@@ -197,6 +198,26 @@ classdef Comb
                          'LineWidth', 0.85);
                 end
                 temp = temp.next_day();
+            end
+        end
+        
+        % outlierControl: removes outliers from data, replaces them with X
+        % markings on the plot. Assumes any day with an average > one
+        % billion is an outlier. 
+        function o = outlierControl(o)
+            outlierIndices = find(o.day_avgs > 1000000000);
+            o.day_avgs(outlierIndices) = NaN;
+            maxAvg = max(o.day_avgs);
+            numOutliers = length(outlierIndices);
+            display_y_val = maxAvg*ones([numOutliers 1]);
+            o.outliers = [outlierIndices display_y_val];
+        end
+        
+        % plot_outliers: plots the outliers found by outlierControl
+        function plot_outliers(o)
+            hold on;
+            for i = 1:1:length(o.outliers)
+                plot(o.outliers(i, 1), o.outliers(i, 2), '^k');
             end
         end
         % saveall: checks for the existence of a directory for the specific
