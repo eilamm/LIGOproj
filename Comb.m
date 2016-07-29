@@ -207,6 +207,8 @@ classdef Comb
         function o = outlierControl(o)
             outlierIndices = find(o.day_avgs > 1000000000);
             o.day_avgs(outlierIndices) = NaN;
+            o.day_errors(outlierIndices) = NaN;
+            o.day_sft_errs(outlierIndices) = NaN;
             maxAvg = max(o.day_avgs);
             numOutliers = length(outlierIndices);
             display_y_val = maxAvg*ones([numOutliers 1]);
