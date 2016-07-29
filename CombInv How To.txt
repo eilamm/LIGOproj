@@ -1,0 +1,86 @@
+Comb Investigation Diagnostic Tool Guide
+By Eilam Morag
+
+_______________________________________________________________________________
+STARTING 
+
+Make sure all the files are in one folder. 
+Transfer them to any folder within your LIGO account on the Hanford cluster.
+
+Before starting the program, there are three (or, optionally, four) parameters that need to be changed by hard-coding them.
+
+_______________________________________________________________________________
+SELECTING INITIAL AND END DATES:
+
+The first two parameters are the initial and end dates for the program. These are labelled START_DATE and END_DATE, and are found in the beginning of "CombInv.m". These are of a custom "Date" type. 
+
+	The format for selecting a date is 
+		variable = Date( [m, d, y] );
+	Example:
+		To set the starting date to February 26, 2015, modify START_DATE as follows:
+		START_DATE = Date( [2, 26, 2015] );
+
+_______________________________________________________________________________
+CHOOSING COMBS:	
+
+The next parameter that needs to be hard-coded is the list of combs that you want to investigate. To clean up CombInv.m, this list of combs is in a different file: "getCombs.m". To change the combs, open getCombs.m and either add a new comb or modify an existing one. Note that there are many combs that are commented out: I personally found it easier to comment out old combs instead of deleting them, so I could uncomment them if I wanted to retest them over a different set of dates later. Feel free to delete old ones, though. 
+
+	Combs are of a custom data type called "Comb". To modify or create a comb, use the following syntax:
+		var = Comb( [lower bound, upper bound, offset, spacing/harmonic, ID] );
+
+	The bounds act as screens: they don't affect the pattern of the teeth, but they block out the ends. For example, if the lower bound is 150 Hz and the upper bound is 2000 Hz, nothing below 150 Hz or above 2000 Hz will be included in the comb. The bounds are inclusive, so if 150 Hz is in the pattern, it will be included in the comb. 
+
+	The offset is from 0 Hz. The offset is the first tooth in the comb, unless it's out of bounds. For example, if the lower bound is 0 and so is the offset, the first tooth in the comb will be 0 Hz. 
+
+	The spacing/harmonic is the spacing in Hz between the teeth of the comb. 
+
+	The ID of the comb is mainly for feedback; it is used to identify combs. It is not crucial to the operation of the program, but it is helpful in case of an error or if you would like to run the program in "self-check" mode. Set this input to any integer value that is not already taken. 
+
+	As an example, if you would like to test a comb with teeth at 3.5, 4.5, 5.5, 6.5, ..., 100.5 Hz, possible syntax could be:
+
+		c12 = Comb( [ 3, 101, 1.5, 1, 12] );
+		This is a comb with bounds at 3 and 101, offset 1.5, and spacing 1. The teeth at 1.5 and 2.5 are cut off by the lower bound, so the first tooth is 3.5, and the teeth about 100.5 are cut off by the upper bound.
+
+		OR
+
+		c12 = Comb( [ 0, 101, 3.5, 1, 12] );
+		This is a comb with bounds at 0 and 101, offset 3.5, and spacing 1. The lower bound does not cut off any of the teeth, as the first tooth is at 3.5 Hz. The upper bound still cuts off all teeth above 100.5. 
+
+IMPORTANT: you must add all the combs you want investigated to the "combs" array that is returned by the getCombs() function. Only combs included in this array are investigated by the program. 
+	Example: If you have created combs with variable names c1, c2, and c3, you would create make the return variable combs like so:
+	combs = [c1; c2; c3];
+
+_______________________________________________________________________________
+CHANGING CHANNELS
+
+This is the optional fourth parameter. You may either hard-code the channel you wish investigated in CombInv.m (change the variable named CHANNEL, also at the top of the file), or you may change the channel during run-time. This is explained in the section "RUNNING THE PROGRAM". 
+Note: Channel names are not case-sensitive.	
+
+_______________________________________________________________________________
+RUNNING THE PROGRAM
+
+Start matlab, and run the program "CombInv."
+The first time the program runs, it will print out a message indicating it is performing first-time setup, which mainly means creating the directory directory CombInv and its subdirectory, Channels, in the path 
+
+/home/<linux username>/public_html/CombInv/Channels/
+
+It will also create a homepage for your results, which can be accessed by going to 
+
+https://ldas-jobs.ligo-wa.caltech.edu/~<linux username>/CombInv/Channels/channelNav.php
+
+After first-time setup, the program will print out the currently selected channel (the one hard-coded in CombInv.m) and prompt you to change it, if you like. Press enter if you would like to keep the hard-coded channel. If you want to change it, enter 'y'. Type in the new channel (not case-sensitive). An example channel is 
+
+H1_PEM-EX_MAG_VEA_FLOOR_X_DQ
+
+The program will then verify that the channel exists. If it does, the program will continue. If it does not, it will prompt you to enter a new channel. 
+
+It will then ask if you want the program to run in "self-check" mode.
+
+	___________________________________________________________________________
+	SELF-CHECK MODE
+	
+	This is a sort of sanity check mode. In this mode, the program will verify that the frequencies retrieved from the data files match (or are the closest match available) the frequencies of the teeth in the comb(s) being investigated. It does this for every comb, on each day. If the frequencies do not match, it prints out a mismatch message. It then tests to see if the retrieved frequency is the closest match to the current tooth. If it is, it prints out a message along the lines of "Selected frequency is best local option" and continues. If it is not, it crashes the program with an error message. 
+
+	Self-check mode also checks that the teeth of the comb are strictly increasing in frequency. This is to make sure there are no repeated or erroneous teeth in the comb. 
+
+Enter 'y' to enter self-check mode, or anything else (incluing an empty string)to continue normally.
