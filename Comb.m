@@ -151,11 +151,11 @@ classdef Comb
             % Set the x-axis ticks to be integers only.
             % Give it easy-to-read spacings between ticks
             space = round_n(o.num_days, 1)/10;
-            set(gca, 'XTick', 0:space:o.num_days-1);
+            set(gca, 'XTick', 0:space:o.num_days);
             % Pad the x-axis so that no data points appear on the vertical
             % axes
             pad = o.num_days/100;
-            xlim([(0-pad) ((o.num_days-1)+pad)]);
+            xlim([(0-pad) ((o.num_days)+pad)]);
         end
         % plot_xlabel: returns a string that should be used for the 
         % ylabel of the plot of the object's data
@@ -234,7 +234,7 @@ classdef Comb
 
             % plot_xlabel also modifies the x-axis so it looks good. That's why the
             % green line is plotted after it is called.
-%             xlabel(o.plot_xlabel());
+            xlabel(o.plot_xlabel());
             
             hold on;
             fplot(green_line, xlim, 'Color', 'g');
