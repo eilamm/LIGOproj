@@ -12,8 +12,8 @@ firstTimeSetup();
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% CHANGE DATES AND CHANNEL %%%%%%%%%%%%%%%%%%%%
 % SET START and END DATES for evaluation
 % Enter as follows: START_DATE = Date([dd mm yyyy]); same for END_DATE
-START_DATE = Date([7, 2, 2016]);
-END_DATE = Date([7, 10, 2016]);
+START_DATE = Date([2, 26, 2016]);
+END_DATE = Date([7, 29, 2016]);
 % You may hard-code the CHANNEL name here instead of entering it at the
 % beginning of the program's execution. Capitalization does not matter,
 % lower-case will be converted to upper-case.
@@ -63,43 +63,10 @@ newChannel(CHANNEL);
 %%%%%%%%%%%%%%%%%%%%%%%%%%% PLOTS AND SAVING FILES %%%%%%%%%%%%%%%%%%%%%%%
 
 for i = 1:1:size(combs)
-    % PRINT TEXT DATA BEFORE OUTLIER CONTROL JULY 29
+    
     combs(i).printTextDataToFile(CHANNEL);
     combs(i) = combs(i).outlierControl();
-%     num_days = combs(i).num_days;
-%     day_averages = combs(i).day_avgs;
-%     day_errors = combs(i).day_errors;
-%     day_sft_errs = combs(i).day_sft_errs;
-%     START_DATE = combs(i).init_date;
-%     END_DATE = combs(i).end_date;
-%     HARMONIC = combs(i).harm;
-%     offset = combs(i).offset;
-%     START_FREQ = combs(i).low_b;
-%     END_FREQ = combs(i).up_b;
-    
-%     figure;
-%     
-%     errorbar(0:1:num_days-1, day_averages, day_errors, 'o');
-%     green_line = @(t) 1;
-%     hold on;
-%     errorbar(0:1:num_days-1, day_averages, day_sft_errs, 'ro');
-% 
-%     % plot_xlabel also modifies the x-axis so it looks good. That's why the
-%     % green line is plotted after it is called.
-%     xlabel(combs(i).plot_xlabel());
-%     hold on;
-%     fplot(green_line, xlim, 'Color', 'g');
-%     % plot_ylabel also modifies the y-axis so it looks good. That's why the
-%     % vertical purple lines are plotted after it is called.
-%     ylabel(combs(i).plot_ylabel());
-%     
-%     combs(i).plot_outliers();
-%     
-%     combs(i).plot_vlines();
-%     set(gcf, 'PaperUnits', 'points');
-%     set(gcf, 'PaperPosition', [0 0 707 530]);
-%     set(gca, 'YTickLabel', get(gca, 'YTick'));
-%     title(combs(i).plot_title());
+
     combs(i).plotCombData();
     combs(i).saveall(CHANNEL);
     
