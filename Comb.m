@@ -234,7 +234,7 @@ classdef Comb
 
             % plot_xlabel also modifies the x-axis so it looks good. That's why the
             % green line is plotted after it is called.
-            xlabel(o.plot_xlabel());
+%             xlabel(o.plot_xlabel());
             
             hold on;
             fplot(green_line, xlim, 'Color', 'g');
