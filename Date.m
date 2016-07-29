@@ -173,7 +173,8 @@ classdef Date
         % Also note, this gives you the number of days between the earlier
         % and the later date, INCLUSIVE (that is why there is the +1)
         function r = minus(date1, date2)
-            r = date2jdn(date1) - date2jdn(date2) + 1;
+%             r = date2jdn(date1) - date2jdn(date2) + 1;
+            r = diffDates(date1, date2);
         end
         % lt: Overwriting the less-than "<" operator. Returns true if date1
         % is less than date 2

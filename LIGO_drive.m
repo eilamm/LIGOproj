@@ -1,10 +1,7 @@
 % Eilam Morag
 % January 31, 2016
-% Purpose: Summing up the normalized powers for specified frequency 
-% patterns.
-% LIGO_Type1(): expressions of type frequency = mx + b, where m is an
-% integer
-% LIGO_Type2(): Combs on combs. 
+% Purpose: Summing up the normalized powers for specified comb frequencies.
+
 
 % clear workspace and close graphics
 clear variables; 
