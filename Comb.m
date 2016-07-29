@@ -222,6 +222,11 @@ classdef Comb
                 plot(o.outliers(i, 1), o.outliers(i, 2), '^k');
             end
         end
+        
+%         %plotCombData: plots the graph for a comb
+%         function plotCombData(o)
+%             
+%         end
         % saveall: checks for the existence of a directory for the specific
         % comb. If none exists, creates one. Then saves the plot to the
         % folder and creates an HTML script to write a webpage displaying
@@ -243,7 +248,7 @@ classdef Comb
             disp(['Saving file ', filename]);
             saveas(gcf, filename);
             genHTML(o, channel);
-            o.printTextDataToFile(channel);
+            
         end
         % printCombFile: returns as a string the important comb properties in a filename
         % safe way (with underscores)

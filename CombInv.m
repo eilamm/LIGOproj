@@ -63,6 +63,8 @@ newChannel(CHANNEL);
 %%%%%%%%%%%%%%%%%%%%%%%%%%% PLOTS AND SAVING FILES %%%%%%%%%%%%%%%%%%%%%%%
 
 for i = 1:1:size(combs)
+    % PRINT TEXT DATA BEFORE OUTLIER CONTROL JULY 29
+    combs(i).printTextDataToFile(CHANNEL);
     combs(i) = combs(i).outlierControl();
     num_days = combs(i).num_days;
     day_averages = combs(i).day_avgs;
