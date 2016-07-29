@@ -211,7 +211,7 @@ classdef Comb
             o.day_sft_errs(outlierIndices) = NaN;
             maxAvg = max(o.day_avgs);
             numOutliers = length(outlierIndices);
-            display_y_val = maxAvg*ones([numOutliers 1]);
+            display_y_val = maxAvg*1.05*ones([numOutliers 1]);
             o.outliers = [outlierIndices display_y_val];
         end
         
@@ -223,10 +223,34 @@ classdef Comb
             end
         end
         
-%         %plotCombData: plots the graph for a comb
-%         function plotCombData(o)
-%             
-%         end
+        %plotCombData: plots the graph for a comb
+        function plotCombData(o)
+            figure;
+    
+            errorbar(0:1:o.num_days-1, o.day_avgs, o.day_errors, 'o');
+            green_line = @(t) 1;
+            hold on;
+            errorbar(0:1:o.num_days-1, o.day_avgs, o.day_sft_errs, 'ro');
+
+            % plot_xlabel also modifies the x-axis so it looks good. That's why the
+            % green line is plotted after it is called.
+            xlabel(o.plot_xlabel());
+            
+            hold on;
+            fplot(green_line, xlim, 'Color', 'g');
+            
+            % plot_ylabel also modifies the y-axis so it looks good. That's why the
+            % vertical purple lines are plotted after it is called.
+            ylabel(o.plot_ylabel());
+
+            o.plot_outliers();
+
+            o.plot_vlines();
+            set(gcf, 'PaperUnits', 'points');
+            set(gcf, 'PaperPosition', [0 0 707 530]);
+            set(gca, 'YTickLabel', get(gca, 'YTick'));
+            title(o.plot_title());
+        end
         % saveall: checks for the existence of a directory for the specific
         % comb. If none exists, creates one. Then saves the plot to the
         % folder and creates an HTML script to write a webpage displaying
