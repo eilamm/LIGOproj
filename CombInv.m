@@ -63,6 +63,7 @@ newChannel(CHANNEL);
 %%%%%%%%%%%%%%%%%%%%%%%%%%% PLOTS AND SAVING FILES %%%%%%%%%%%%%%%%%%%%%%%
 
 for i = 1:1:size(combs)
+    combs(i) = combs(i).outlierControl();
     num_days = combs(i).num_days;
     day_averages = combs(i).day_avgs;
     day_errors = combs(i).day_errors;
@@ -75,7 +76,7 @@ for i = 1:1:size(combs)
     END_FREQ = combs(i).up_b;
     
     figure;
-    combs(i) = combs(i).outlierControl();
+    
     errorbar(0:1:num_days-1, day_averages, day_errors, 'o');
     green_line = @(t) 1;
     hold on;
