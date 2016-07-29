@@ -10,7 +10,7 @@
 % As a final (but very important) step, add this new comb to the "combs" array. 
 
 function combs = getCombs()
-    % c1 = Comb([0, 150, 0, 16, 1]);
+    c1 = Comb([0, 150, 0, 16, 1]);
     % c2 = Comb([0, 4000, 0, 16, 2]);
     % c3 = Comb([150, 4000, 0, 16, 3]);
     % 
@@ -34,10 +34,10 @@ function combs = getCombs()
     % 
     % c17 = Comb([0, 4000, 0, 2, 17]);
 
-    c18 = Comb([9, 175, 1.999951/2.0, 1.999951, 18]);
+%     c18 = Comb([9, 175, 1.999951/2.0, 1.999951, 18]);
     % c19 = Comb([0, 4000, 12.47285, 12.28695, 19]);
     % c20 = Comb([2000, 3000, 58.3332, 3.57381, 20]);
     
     % combs = [c1; c2; c3; c4; c5; c6; c7; c8; c9; c10; c11; c12; c13; c14; c15; c16; c17; c18; c19; c20];
-    combs = [c18];
+    combs = [c1];
 end

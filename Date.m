@@ -15,8 +15,8 @@ classdef Date
                     obj.month = c.month;
                     obj.year = c.year;
                 else
-                    obj.day = c(1);
-                    obj.month = c(2);
+                    obj.day = c(2);
+                    obj.month = c(1);
                     obj.year = c(3);
                 end
             else
